@@ -13,4 +13,6 @@ public interface CofefeProvider {
 
     public List<Cofefe> search(final String query);
 
+    public Cofefe getById(final Long id);
+
 }

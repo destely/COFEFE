@@ -9,6 +9,24 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<style>
+
+    .tab-header {
+        text-align: center;
+        float: left;
+        margin-right: 5px;
+        min-height: 50px;
+        line-height: 50px;
+        min-width: 150px;
+        background-color: #fff;
+    }
+
+    .tab-header:hover {
+        color: #fff;
+        background-color: #ff0000;
+    }
+
+</style>
 
 <div class="container">
 
@@ -28,8 +46,64 @@
             </div>
         </div>
         <div class="width-6">
-            <div class="description">${cofefe.description}</div>
+            <div class="row">
+                <div class="tabs">
+                    <div class="tab active width-3" id="short" data="tab_short">
+                        <div class="tab-name">Краткое описание</div>
+                    </div>
+                    <div class="tab width-3" id="full" data="tab_full">
+                        <div class="tab-name">Полное описание</div>
+                    </div>
+                    <div class="tab width-3" data="tab_comments">
+                        <div class="tab-name">Отзывы</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="tab-content">
+                    <div id="tab_short" class="tab-inner active">
+                        ${cofefe.shortDescription}
+                    </div>
+                    <div id="tab_full" class="tab-inner">
+                        ${cofefe.description}
+                    </div>
+                    <div id="tab_comments" class="tab-inner">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
+
+<script>
+
+    function removeClass(el, cls) {
+        var oldClassName = el.className;
+        var idx = oldClassName.indexOf(cls);
+        var newClassName = "";
+        if (idx != -1) {
+            newClassName += oldClassName.substr(0, idx) + oldClassName.substr(idx + cls.length, oldClassName.length);
+            el.className = newClassName;
+        }
+    }
+
+    var activeTab = document.getElementsByClassName("tab-content")[0].getElementsByClassName("active")[0];
+    var activeButton = document.getElementsByClassName("tabs")[0].getElementsByClassName("active")[0];
+    var tabButtons = document.getElementsByClassName("tab");
+    for (var i = 0; i < tabButtons.length; i++) {
+        var button = tabButtons[i];
+        button.onclick = function(btn) {
+            return function() {
+                var id = btn.attributes.data.value;
+                var newTab = document.getElementById(id);
+                newTab.className += " active";
+                btn.className += " active";
+                removeClass(activeTab, "active");
+                removeClass(activeButton, "active");
+                activeTab = newTab;
+                activeButton = btn;
+            };
+        }(button);
+    }
+
+</script>

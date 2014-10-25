@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: destely
@@ -8,6 +9,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%--@elvariable id="locale" type="java.util.Locale"--%>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="main.java.ru.eltech.cofefe.lang"/>
 
 <div class="container" style="margin-top: 50px;">
 
@@ -28,16 +32,31 @@
         </c:forEach>
     </div>
 
-    <div style="margin-bottom: 20px; display: none" class="width-5" id="template">
-        <div class="width-7">
-            <div class="image" style="">
-                <img class="template_image" src="${imgLink}/" style="width: 100%;"/>
+    <div style="margin-bottom: 20px; display: none;" class="width-5" id="template">
+        <div class="row">
+            <div class="width-7">
+                <div class="image" style="">
+                    <img class="template_image" src="${imgLink}/" style="width: 100%;"/>
+                </div>
+            </div>
+            <div class="width-5">
+                <div class="row">
+                    <div class="width-12">
+                        <a class="template_link" href="${link}"><b class="template_title"></b></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="width-12 template_description">
+
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="width-5">
-            <a class="template_link" href="${link}"><b class="template_title"></b></a>
+        <div class="row" style="margin-top: 10px;">
+            <div class="width-12">
+                <div class="btn btn-outline btn-normal"><fmt:message key="ADD_TO_CART"/></div>
+            </div>
         </div>
-        <div class="width-4 template_description"></div>
     </div>
 
 </div>
@@ -79,6 +98,7 @@
         var clone = element.cloneNode(true);
         clone.style.display = "";
         clone.getElementsByClassName("template_image")[0].src += cofefe.image;
+        clone.getElementsByClassName("template_link")[0].href += cofefe.id;
         clone.getElementsByClassName("template_title")[0].innerText += cofefe.title;
         clone.getElementsByClassName("template_description")[0].innerText = cofefe.description;
         clone.removeAttribute("id");

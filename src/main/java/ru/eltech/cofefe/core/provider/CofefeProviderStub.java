@@ -12,14 +12,31 @@ import java.util.Random;
  */
 public class CofefeProviderStub implements CofefeProvider {
 
+    private static final Object monitor = new Object();
+
     private List<Cofefe> list = new ArrayList<>(20);
 
-    public CofefeProviderStub() {
+    private static volatile CofefeProviderStub instance = null;
+
+    public static CofefeProviderStub getInstance() {
+        if (instance == null) {
+            synchronized (monitor) {
+                if (instance == null) {
+                    instance = new CofefeProviderStub();
+                }
+            }
+        }
+        return instance;
+    }
+
+    private CofefeProviderStub() {
         Random random = new Random();
         for(int i = 0; i < 10; i++) {
             Cofefe cofefe = new Cofefe();
+            cofefe.setId(i);
             cofefe.setTitle("Cofefe [" + random.nextInt() + "]");
-            cofefe.setDescription("Это кофе");
+            cofefe.setShortDescription("Это кофе");
+            cofefe.setDescription("Это кофе, кофе кофе фе");
             cofefe.setImage("espr_robysta.jpg");
             list.add(cofefe);
         }
@@ -39,6 +56,16 @@ public class CofefeProviderStub implements CofefeProvider {
             }
         }
         return result;
+    }
+
+    @Override
+    public Cofefe getById(Long id) {
+        for (Cofefe cofefe : list) {
+            if (cofefe.getId() == id) {
+                return cofefe;
+            }
+        }
+        return null;
     }
 
 }

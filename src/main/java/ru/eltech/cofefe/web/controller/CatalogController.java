@@ -20,7 +20,7 @@ import java.util.Random;
  */
 public class CatalogController extends BaseController {
 
-    private CofefeProvider cofefeProvider = new CofefeProviderStub();
+    private CofefeProvider cofefeProvider = CofefeProviderStub.getInstance();
 
     @Override
     public void handlePostRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -49,8 +49,9 @@ public class CatalogController extends BaseController {
         for (Cofefe cofefe : result) {
             JSONObject _object = new JSONObject();
             _object.put("title", cofefe.getTitle());
-            _object.put("description", cofefe.getDescription());
+            _object.put("description", cofefe.getShortDescription());
             _object.put("image", cofefe.getImage());
+            _object.put("id", cofefe.getId());
             array.add(_object);
         }
         response.setContentType("application/json");

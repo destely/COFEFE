@@ -25,12 +25,12 @@
         <div class="width-5">
             <div class="row">
                 <div class="width-12">
-                    <a href="${link}"><b>${item.title}</b></a>
+                    <a href="${link}${item.id}"><b>${item.title}</b></a>
                 </div>
             </div>
             <div class="row">
                 <div class="width-12">
-                    ${item.description}
+                    ${item.shortDescription}
                 </div>
             </div>
         </div>

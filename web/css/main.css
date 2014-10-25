@@ -639,6 +639,7 @@ textarea.form-input {
     padding: 15px;
     color: white;
     margin-right: 10px;
+    min-height: 80px;
 }
 
 .tab.active {
@@ -650,6 +651,16 @@ textarea.form-input {
     border-radius: 5px;
     border: 15px solid #6FAD8F;
     padding: 15px;
+    min-height: 300px;
+}
+
+.tab-inner {
+    display: none;
+}
+
+
+.tab-inner.active{
+    display: block;
 }
 
 @media (min-width: 1200px) {
