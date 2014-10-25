@@ -196,14 +196,14 @@ body {
 
 .page-header .controls .control:hover {
     text-decoration: none;
-    background-color: #6BA7DA;
+    background-color: #da633f;
     color: #fff;
 }
 
 
 .brand:hover {
     text-decoration: none;
-    color: #6BA7DA;
+    color: #da633f;
     text-shadow: 0 1px 0 rgba(255, 197, 88,.1), 0 0 30px rgba(255, 197, 88,.4);
 }
 
@@ -634,7 +634,7 @@ textarea.form-input {
     font-size: 20px;
     cursor: pointer;
     text-align: center;
-    background-color: #68947F;
+    background-color: #da633f;
     border-radius: 5px 5px 0 0;
     padding: 15px;
     color: white;
@@ -643,13 +643,13 @@ textarea.form-input {
 }
 
 .tab.active {
-    background-color: #6FAD8F;
+    background-color: #daa27e;
 }
 
 .tab-content {
     background-color: #ffffff;
-    border-radius: 5px;
-    border: 15px solid #6FAD8F;
+    border-radius: 0 0 5px 5px;
+    border: 15px solid #daa27e;
     padding: 15px;
     min-height: 300px;
 }

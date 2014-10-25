@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--@elvariable id="cofefe" type="main.java.ru.eltech.cofefe.core.entity.Cofefe"--%>
 <%--
   Created by IntelliJ IDEA.
@@ -9,24 +10,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<style>
-
-    .tab-header {
-        text-align: center;
-        float: left;
-        margin-right: 5px;
-        min-height: 50px;
-        line-height: 50px;
-        min-width: 150px;
-        background-color: #fff;
-    }
-
-    .tab-header:hover {
-        color: #fff;
-        background-color: #ff0000;
-    }
-
-</style>
+<%--@elvariable id="locale" type="java.util.Locale"--%>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="main.java.ru.eltech.cofefe.lang"/>
 
 <div class="container">
 
@@ -49,13 +35,13 @@
             <div class="row">
                 <div class="tabs">
                     <div class="tab active width-3" id="short" data="tab_short">
-                        <div class="tab-name">Краткое описание</div>
+                        <div class="tab-name"><fmt:message key="GREEN"/></div>
                     </div>
                     <div class="tab width-3" id="full" data="tab_full">
-                        <div class="tab-name">Полное описание</div>
+                        <div class="tab-name"><fmt:message key="DETAILS"/></div>
                     </div>
                     <div class="tab width-3" data="tab_comments">
-                        <div class="tab-name">Отзывы</div>
+                        <div class="tab-name"><fmt:message key="REVIEWS"/></div>
                     </div>
                 </div>
             </div>
@@ -71,6 +57,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+        <div class="width-12">
+            <div class="btn btn-outline btn-normal"><fmt:message key="ADD_TO_CART"/></div>
         </div>
     </div>
 </div>
