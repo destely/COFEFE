@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="COFEFE:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/COFEFE_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="COFEFE/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="COFEFE" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="javax.servlet.jsp.jstl-1.2.1" />
+          <element id="library" level="project" name="javax.servlet.jsp.jstl-api-1.2.1" />
+          <element id="library" level="project" name="json-simple-1.1.1" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
