@@ -2,6 +2,7 @@ package main.java.ru.eltech.cofefe.web.controller;
 
 import main.java.ru.eltech.cofefe.core.entity.CartItem;
 import main.java.ru.eltech.cofefe.core.entity.Cofefe;
+import main.java.ru.eltech.cofefe.core.entity.User;
 import main.java.ru.eltech.cofefe.core.provider.CofefeProvider;
 import main.java.ru.eltech.cofefe.core.provider.CofefeProviderStub;
 import org.json.simple.JSONObject;
@@ -31,7 +32,9 @@ public class CartController implements BaseController {
             update(request, response);
         } else if (requestURI.contains("remove")) {
             remove(request, response);
-        } else {
+        } else if (requestURI.contains("order")) {
+            order(request, response);
+        }  else {
             list(request, response);
         }
     }
@@ -114,6 +117,17 @@ public class CartController implements BaseController {
         }
         cart.remove(id);
         response.sendRedirect("/cofefe/app/cart");
+    }
+
+    private void order(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+        request.setAttribute("content", "cart.jsp");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            response.sendRedirect("/cofefe/app/auth");
+        } else {
+            response.sendRedirect("/cofefe/app/cart");
+        }
     }
 
 }

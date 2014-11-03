@@ -18,10 +18,6 @@
 </head>
 <body>
     <jsp:include page="header.jsp"/>
-    <%--@elvariable id="user" type="main.java.ru.eltech.cofefe.core.entity.User"--%>
-    <c:if test="${user ne null}">
-        ${user.login}
-    </c:if>
     <jsp:include page="${content}"/>
 </body>
 </html>
