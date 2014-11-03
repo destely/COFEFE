@@ -54,7 +54,7 @@
         </div>
         <div class="row" style="margin-top: 10px;">
             <div class="width-12">
-                <div class="btn btn-outline btn-normal"><fmt:message key="ADD_TO_CART"/></div>
+                <div name="add_to_cart" class="btn btn-outline btn-normal"><fmt:message key="ADD_TO_CART"/></div>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
     queryField.onkeyup = function() {
         var val = queryField.value;
         setCookie("query", val, 1000000);
-    };
+    };//выставляем куки по такому ключу с таким значением на время
     var cookieVal = getCookie("query");
     if (cookieVal) {
         queryField.value = cookieVal;
@@ -92,6 +92,27 @@
         });
     };
 
+    var addToCartButtons = document.getElementsByName("add_to_cart");
+    for (var i = 0; i < addToCartButtons.length; i++) {
+        var button = addToCartButtons[i];
+        button.onclick = function(btn) {
+            return function() {
+                var ajaxRequest = new AjaxRequest({
+                    url: "/cofefe/app/cart/update?id=" + btn.attributes["cofefe-id"].value + "&value=1",
+                    contentType: "application/json",
+                    dataType: "json"
+                }, function(data) {
+                    if (data.success) {
+                        alert("Ура");
+                    } else {
+                        alert(":(");
+                    }
+                }, function(error) {
+                    alert("Error: " + error);
+                });
+            };
+        }(button);
+    }
 
 
     function createFromTemplate(element, cofefe) {

@@ -98,6 +98,10 @@ body {
     width: 100%;
     left: 0;
 }
+.image {
+   max-height: 480px;
+    max-width: 320px;
+}
 @media (min-width: 900px) and (max-width: 1600px) {
     .sidebar-helper {
         padding-left: 230px
@@ -311,28 +315,28 @@ textarea.form-input {
 
 .btn-normal {
     color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd;
+    background-color: #ff5a0d;
+    border-color: #ff8530;
 }
 
 .btn-normal.btn-outline {
-    color: #428bca;
+    color: #ff5a0d;
 }
 
 .btn-normal:hover, .btn-normal:focus, .btn-normal:active, .btn-normal.active, .open > .dropdown-toggle.btn-normal {
     color: #fff;
-    background-color: #3071a9;
-    border-color: #285e8e;
+    background-color: #ff8530;;
+    border-color: #ff5a0d;
 }
 
 .btn-red {
     color: #fff;
     background-color: #ca0e18;
-    border-color: #bd000d;
+    border-color: #e80e19;
 }
 
 .btn-red.btn-outline {
-    color: #ca0813;
+    color: #ff5a0d;
 }
 
 .btn-red:hover, .btn-red:focus, .btn-red:active, .btn-red.active, .open > .dropdown-toggle.btn-red {
@@ -445,6 +449,7 @@ textarea.form-input {
 .row {
     margin-right: -15px;
     margin-left: -15px;
+    text-align: justify;
 }
 
 .row-skip {
@@ -631,27 +636,27 @@ textarea.form-input {
 
 .tab {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
     text-align: center;
-    background-color: #da633f;
+    background-color: #a38064;
     border-radius: 5px 5px 0 0;
     padding: 15px;
     color: white;
     margin-right: 10px;
-    min-height: 80px;
+    min-height: 30px;
 }
 
 .tab.active {
-    background-color: #daa27e;
+    background-color: #dacf9c;
 }
 
 .tab-content {
     background-color: #ffffff;
     border-radius: 0 0 5px 5px;
-    border: 15px solid #daa27e;
+    border: 6px solid  #dacf9c;
     padding: 15px;
-    min-height: 300px;
+    min-height: 200px;
 }
 
 .tab-inner {

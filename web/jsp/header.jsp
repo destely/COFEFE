@@ -4,12 +4,12 @@
 
 <div class="page-header">
     <div class="container">
-        <c:set var="brandLink"><c:url value=""/></c:set>
+        <c:set var="brandLink"><c:url value="/app/catalog"/></c:set>
         <a href="${brandLink}" class="brand movieshop-brand">
             Cofefe
         </a>
         <div class="controls">
-            <c:set var="cart"><c:url value=""/></c:set>
+            <c:set var="cart"><c:url value="/app/cart"/></c:set>
             <a href="${cart}" class="control">
                 <i class="fa fa-shopping-cart"></i>
             </a>
@@ -17,10 +17,20 @@
             <a href="${profileLink}" class="control">
                 <i class="fa fa-user"></i>
             </a>
-            <c:set var="logoutLink"><c:url value=""/></c:set>
-            <a href="${logoutLink}" class="control">
-                <i class="fa fa-power-off"></i>
-            </a>
+            <c:set var="logoutLink"><c:url value="/app/logout"/></c:set>
+            <c:set var="loginLink"><c:url value="/app/auth"/></c:set>
+            <c:choose>
+                <c:when test="${user ne null}">
+                    <a href="${logoutLink}" class="control">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${loginLink}" class="control">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </c:otherwise>
+            </c:choose>
             <c:set var="catalogUrl"><c:url value=""/></c:set>
             <a href="${catalogUrl}" class="control">
                 <i class="fa fa-book"></i>

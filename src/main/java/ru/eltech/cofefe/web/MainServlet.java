@@ -1,9 +1,7 @@
 package main.java.ru.eltech.cofefe.web;
 
-import main.java.ru.eltech.cofefe.web.controller.BaseController;
-import main.java.ru.eltech.cofefe.web.controller.CatalogController;
-import main.java.ru.eltech.cofefe.web.controller.CommonController;
-import main.java.ru.eltech.cofefe.web.controller.ProductController;
+import main.java.ru.eltech.cofefe.core.entity.User;
+import main.java.ru.eltech.cofefe.web.controller.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -18,6 +16,7 @@ import java.util.Map;
 public class MainServlet extends HttpServlet {
 
     private Map<String, BaseController> controllerMap = new HashMap<String, BaseController>();
+    private Locale defaultLocale = Locale.ENGLISH;
 
     @Override
     public void init() throws ServletException {
@@ -25,6 +24,8 @@ public class MainServlet extends HttpServlet {
         controllerMap.put(".*\\/product.*", new ProductController());
         controllerMap.put(".*\\/catalog.*", new CatalogController());
         controllerMap.put(".*\\/common.*", new CommonController());
+        controllerMap.put(".*\\/cart.*", new CartController());
+        controllerMap.put(".*\\/auth.*", new AuthController());
     }
 
     @Override
@@ -32,6 +33,10 @@ public class MainServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            req.setAttribute("user", user);
+        }
         String localeString = (String) session.getAttribute("locale");
         if (localeString ==  null) {
             String curLocaleFromCookie = null;
@@ -42,7 +47,7 @@ public class MainServlet extends HttpServlet {
                 }
             }
             if (curLocaleFromCookie == null) {
-                req.setAttribute("locale", Locale.ENGLISH);
+                req.setAttribute("locale", defaultLocale);
             } else {
                 Locale locale = new Locale(curLocaleFromCookie);
                 session.setAttribute("locale", curLocaleFromCookie);
@@ -53,6 +58,38 @@ public class MainServlet extends HttpServlet {
             req.setAttribute("locale", locale);
         }
         resolveControllerByRequest(req).handleGetRequest(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            req.setAttribute("user", user);
+        }
+        String localeString = (String) session.getAttribute("locale");
+        if (localeString ==  null) {
+            String curLocaleFromCookie = null;
+            for (Cookie cookie : req.getCookies()) {
+                if ("locale".equals(cookie.getName())) {
+                    curLocaleFromCookie = cookie.getValue();
+                    break;
+                }
+            }
+            if (curLocaleFromCookie == null) {
+                req.setAttribute("locale", defaultLocale);
+            } else {
+                Locale locale = new Locale(curLocaleFromCookie);
+                session.setAttribute("locale", curLocaleFromCookie);
+                req.setAttribute("locale", locale);
+            }
+        } else {
+            Locale locale = new Locale(localeString);
+            req.setAttribute("locale", locale);
+        }
+        resolveControllerByRequest(req).handlePostRequest(req, resp);
     }
 
     private BaseController resolveControllerByRequest(final HttpServletRequest request) {

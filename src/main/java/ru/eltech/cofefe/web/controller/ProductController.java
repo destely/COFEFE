@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by destely on 19.10.2014.
  */
-public class ProductController extends BaseController {
+public class ProductController implements BaseController {
 
     private CofefeProvider cofefeProvider = CofefeProviderStub.getInstance();
 

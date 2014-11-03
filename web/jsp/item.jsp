@@ -37,7 +37,7 @@
     </div>
     <div class="row" style="margin-top: 10px;">
         <div class="width-12">
-            <div class="btn btn-outline btn-normal"><fmt:message key="ADD_TO_CART"/></div>
+            <div cofefe-id="${item.id}" name="add_to_cart" class="btn btn-outline btn-normal"><fmt:message key="ADD_TO_CART"/></div>
         </div>
     </div>
 </div>

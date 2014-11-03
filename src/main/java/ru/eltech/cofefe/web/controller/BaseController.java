@@ -8,14 +8,10 @@ import java.io.IOException;
 /**
  * Created by destely on 19.10.2014.
  */
-public class BaseController {
+public interface BaseController {
 
-    public void handleGetRequest(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+    public void handleGetRequest(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException;
 
-    }
-
-    public void handlePostRequest(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-
-    }
+    public void handlePostRequest(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException;
 
 }

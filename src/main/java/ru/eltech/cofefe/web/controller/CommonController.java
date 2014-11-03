@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by destely on 25.10.2014.
  */
-public class CommonController extends BaseController {
+public class CommonController implements BaseController {
 
     @Override
     public void handleGetRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -20,4 +20,10 @@ public class CommonController extends BaseController {
         response.addCookie(cookie);
         response.sendRedirect("/cofefe/app");
     }
+
+    @Override
+    public void handlePostRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+    }
+
 }

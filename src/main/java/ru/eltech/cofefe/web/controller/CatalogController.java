@@ -18,21 +18,20 @@ import java.util.Random;
 /**
  * Created by destely on 19.10.2014.
  */
-public class CatalogController extends BaseController {
+public class CatalogController implements BaseController {
 
     private CofefeProvider cofefeProvider = CofefeProviderStub.getInstance();
 
     @Override
     public void handlePostRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
     }
 
     @Override
     public void handleGetRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("content", "catalog.jsp");
-        String requestURI = request.getRequestURI();
+        String requestURI = request.getRequestURI();//путь запроса без парам
         if (requestURI.contains("search")) {
-            search(request, response);
+            search(request, response);//вызов метода
         } else {
             List<Cofefe> cofefeList = cofefeProvider.getAll();
             request.setAttribute("list", cofefeList);
@@ -55,7 +54,7 @@ public class CatalogController extends BaseController {
             array.add(_object);
         }
         response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+      //  response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         out.print(object.toJSONString());
         out.flush();

@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 
 public class UTF8ResourceBundle extends ResourceBundle {
 
-    protected static final String BUNDLE_EXTENSION = "properties";
+    protected static final String BUNDLE_EXTENSION = "properties"; //расширение файлов локализации
     protected static final Control UTF8_CONTROL = new UTF8Control();
 
     public UTF8ResourceBundle(final String name, final Locale locale) {
@@ -30,6 +30,8 @@ public class UTF8ResourceBundle extends ResourceBundle {
     }
 
     protected static class UTF8Control extends Control {
+
+        @Override
         public ResourceBundle newBundle
                 (String baseName, Locale locale, String format, ClassLoader loader, boolean reload)
                 throws IllegalAccessException, InstantiationException, IOException {

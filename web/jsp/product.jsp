@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="tabs">
                     <div class="tab active width-3" id="short" data="tab_short">
-                        <div class="tab-name"><fmt:message key="GREEN"/></div>
+                        <div class="tab-name"><fmt:message key="DESCRIPTION"/></div>
                     </div>
                     <div class="tab width-3" id="full" data="tab_full">
                         <div class="tab-name"><fmt:message key="DETAILS"/></div>
@@ -68,11 +68,11 @@
 
 <script>
 
-    function removeClass(el, cls) {
+    function removeClass(el, cls) {//удаление класса из строки классов
         var oldClassName = el.className;
-        var idx = oldClassName.indexOf(cls);
+        var idx = oldClassName.indexOf(cls);//находим индекса класса в строке
         var newClassName = "";
-        if (idx != -1) {
+        if (idx != -1) {//если найдено
             newClassName += oldClassName.substr(0, idx) + oldClassName.substr(idx + cls.length, oldClassName.length);
             el.className = newClassName;
         }
@@ -80,8 +80,8 @@
 
     var activeTab = document.getElementsByClassName("tab-content")[0].getElementsByClassName("active")[0];
     var activeButton = document.getElementsByClassName("tabs")[0].getElementsByClassName("active")[0];
-    var tabButtons = document.getElementsByClassName("tab");
-    for (var i = 0; i < tabButtons.length; i++) {
+    var tabButtons = document.getElementsByClassName("tab");//список всех кнопок
+    for (var i = 0; i < tabButtons.length; i++) {//каждой кнопке задаем обработчик нажатия
         var button = tabButtons[i];
         button.onclick = function(btn) {
             return function() {

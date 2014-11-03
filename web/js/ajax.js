@@ -5,7 +5,7 @@
 function AjaxRequest(opts, successFunctionCallback, errorFunctionCallback) {
     var $this = this;
     var xmlhttp;
-    try {
+    try {//в виду отсутствия  XMLHttpRequest в старых браузерах
         xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
     } catch (e) {
         try {
@@ -17,7 +17,6 @@ function AjaxRequest(opts, successFunctionCallback, errorFunctionCallback) {
     if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
         xmlhttp = new XMLHttpRequest();
     }
-
     var url = opts.url;
     var contentType = opts.contentType;
     var data = opts.data;
