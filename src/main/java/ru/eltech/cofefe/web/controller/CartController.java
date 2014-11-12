@@ -115,7 +115,16 @@ public class CartController implements BaseController {
             cart = new HashMap<Long, CartItem>();
             session.setAttribute("cart", cart);
         }
-        cart.remove(id);
+        CartItem item = cart.get(id);
+       // cart.remove(id);
+        if (item != null) {
+            int quantity = item.getQuantity();
+            if (quantity > 1) {
+                item.setQuantity(quantity - 1);
+            } else {
+                cart.remove(id);
+            }
+        }
         response.sendRedirect("/cofefe/app/cart");
     }
 

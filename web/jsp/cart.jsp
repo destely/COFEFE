@@ -50,7 +50,10 @@
                 </div>
             </div>
         </c:forEach>
-        <c:set var="orderLink"><c:url value="/app/cart/order"/></c:set>
-        <a href="${orderLink}" class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>
+
+            <a href="#" onclick="alert('Для совершения заказа, авторизуйтесь.') "class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>
+            <%--<c:set var="orderLink"><c:url value="/app/cart/order"/></c:set>--%>
+        <%--<a href="${orderLink}" class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>--%>
     </div>
 </div>
+

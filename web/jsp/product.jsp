@@ -61,7 +61,7 @@
     </div>
     <div class="row" style="margin-top: 10px;">
         <div class="width-12">
-            <div class="btn btn-outline btn-normal"><fmt:message key="ADD_TO_CART"/></div>
+            <div class="btn btn-outline btn-normal" id="prod_id"><fmt:message key="ADD_TO_CART"/></div>
         </div>
     </div>
 </div>
@@ -77,6 +77,25 @@
             el.className = newClassName;
         }
     }
+
+    function generateCallback(id) {
+        return function() {
+            var ajaxRequest = new AjaxRequest({
+                url: "/cofefe/app/cart/update?id=" + id + "&value=1",
+                contentType: "application/json",
+                dataType: "json"
+            }, function(data) {
+                if (data.success) {
+                    alert("Ура");
+                } else {
+                    alert(":(");
+                }
+            }, function(error) {
+                alert("Error: " + error);
+            });
+        };
+    }
+    document.getElementById("prod_id").onclick = generateCallback(${cofefe.id}); //берем id из бина
 
     var activeTab = document.getElementsByClassName("tab-content")[0].getElementsByClassName("active")[0];
     var activeButton = document.getElementsByClassName("tabs")[0].getElementsByClassName("active")[0];

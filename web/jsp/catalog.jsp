@@ -54,7 +54,7 @@
         </div>
         <div class="row" style="margin-top: 10px;">
             <div class="width-12">
-                <div name="add_to_cart" class="btn btn-outline btn-normal"><fmt:message key="ADD_TO_CART"/></div>
+                <div name="add_to_cart" class="btn btn-outline btn-normal add_to_cart"><fmt:message key="ADD_TO_CART"/></div>
             </div>
         </div>
     </div>
@@ -92,28 +92,29 @@
         });
     };
 
+    function generateCallback(id) {
+        return function() {
+            var ajaxRequest = new AjaxRequest({
+                url: "/cofefe/app/cart/update?id=" + id + "&value=1",
+                contentType: "application/json",
+                dataType: "json"
+            }, function(data) {
+                if (data.success) {
+                    alert("Ура");
+                } else {
+                    alert(":(");
+                }
+            }, function(error) {
+                alert("Error: " + error);
+            });
+        };
+    }
+
     var addToCartButtons = document.getElementsByName("add_to_cart");
     for (var i = 0; i < addToCartButtons.length; i++) {
         var button = addToCartButtons[i];
-        button.onclick = function(btn) {
-            return function() {
-                var ajaxRequest = new AjaxRequest({
-                    url: "/cofefe/app/cart/update?id=" + btn.attributes["cofefe-id"].value + "&value=1",
-                    contentType: "application/json",
-                    dataType: "json"
-                }, function(data) {
-                    if (data.success) {
-                        alert("Ура");
-                    } else {
-                        alert(":(");
-                    }
-                }, function(error) {
-                    alert("Error: " + error);
-                });
-            };
-        }(button);
+        button.onclick = generateCallback(button.attributes["cofefe-id"].value);
     }
-
 
     function createFromTemplate(element, cofefe) {
         var clone = element.cloneNode(true);
@@ -122,6 +123,8 @@
         clone.getElementsByClassName("template_link")[0].href += cofefe.id;
         clone.getElementsByClassName("template_title")[0].innerText += cofefe.title;
         clone.getElementsByClassName("template_description")[0].innerText = cofefe.description;
+        clone.getElementsByClassName("add_to_cart")[0].onclick = generateCallback(cofefe.id);
+
         clone.removeAttribute("id");
         return clone;
     }
