@@ -14,22 +14,8 @@ import java.util.Random;
 public class CofefeProviderStub implements CofefeProvider {
 
     private static final Object monitor = new Object();
-
-    private List<Cofefe> list = new ArrayList<>(20);
-
     private static volatile CofefeProviderStub instance = null;
-
-    //ленивая инициализация синглтона
-    public static CofefeProviderStub getInstance() {
-        if (instance == null) {
-            synchronized (monitor) {
-                if (instance == null) {
-                    instance = new CofefeProviderStub();
-                }
-            }
-        }
-        return instance;
-    }
+    private List<Cofefe> list = new ArrayList<>(20);
 
     private CofefeProviderStub() {
     /*    Random random = new Random();
@@ -122,6 +108,18 @@ public class CofefeProviderStub implements CofefeProvider {
                 " Вдвоем они образуют мелодичную симфонию, любимую многими кофеманами.");
         blu.setImage("espr_blu_star.jpg");
         list.add(blu);
+    }
+
+    //ленивая инициализация синглтона
+    public static CofefeProviderStub getInstance() {
+        if (instance == null) {
+            synchronized (monitor) {
+                if (instance == null) {
+                    instance = new CofefeProviderStub();
+                }
+            }
+        }
+        return instance;
     }
 
     @Override

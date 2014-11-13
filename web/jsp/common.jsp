@@ -17,7 +17,7 @@
     <script src="${jsLink}/ajax.js">void(0);</script>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
-    <jsp:include page="${content}"/>
+<jsp:include page="header.jsp"/>
+<jsp:include page="${content}"/>
 </body>
 </html>

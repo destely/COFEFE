@@ -1,7 +1,7 @@
 /*main*/
 
 .search-cover {
-    width:100px;
+    width: 100px;
 }
 
 .light-text {
@@ -71,7 +71,7 @@ body {
     .sidebar {
         z-index: 1;
         position: absolute;
-        width: 230px!important;
+        width: 230px !important;
     }
 }
 
@@ -98,10 +98,12 @@ body {
     width: 100%;
     left: 0;
 }
+
 .image {
-   max-height: 480px;
+    max-height: 480px;
     max-width: 320px;
 }
+
 @media (min-width: 900px) and (max-width: 1600px) {
     .sidebar-helper {
         padding-left: 230px
@@ -138,12 +140,12 @@ body {
     padding-left: 20px;
     background-color: #66310E;
 
-    background-image: -moz-linear-gradient(top,#66310E,#2C2408);
-    background-image: -webkit-gradient(linear,0 0,0 100%,from(#66310E),to(#2C2408));
-    background-image: -webkit-linear-gradient(top,#66310E,#2C2408);
-    background-image: -o-linear-gradient(top,#66310E,#2C2408);
+    background-image: -moz-linear-gradient(top, #66310E, #2C2408);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#66310E), to(#2C2408));
+    background-image: -webkit-linear-gradient(top, #66310E, #2C2408);
+    background-image: -o-linear-gradient(top, #66310E, #2C2408);
 
-    background-image: linear-gradient(to bottom,#66310E,#2C2408);
+    background-image: linear-gradient(to bottom, #66310E, #2C2408);
     background-repeat: repeat-x;
     border: 1px solid transparent;
     -webkit-border-radius: 0;
@@ -151,10 +153,10 @@ body {
     -moz-border-radius: 0;
     border-radius: 0;
     /*directx*/
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff080808',endColorstr='#ff080808',GradientType=0);
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-    -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff080808', endColorstr='#ff080808', GradientType=0);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 }
 
 .page-under-header {
@@ -164,12 +166,12 @@ body {
     padding-left: 20px;
     background-color: #2C2408;
 
-    background-image: -moz-linear-gradient(top,#2C2408,#2C2408);
-    background-image: -webkit-gradient(linear,0 0,0 100%,from(#2C2408),to(#2C2408));
-    background-image: -webkit-linear-gradient(top,#2C2408,#2C2408);
-    background-image: -o-linear-gradient(top,#2C2408,#2C2408);
+    background-image: -moz-linear-gradient(top, #2C2408, #2C2408);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2C2408), to(#2C2408));
+    background-image: -webkit-linear-gradient(top, #2C2408, #2C2408);
+    background-image: -o-linear-gradient(top, #2C2408, #2C2408);
 
-    background-image: linear-gradient(to bottom,#2C2408,#2C2408);
+    background-image: linear-gradient(to bottom, #2C2408, #2C2408);
     background-repeat: repeat-x;
     border: 1px solid transparent;
     -webkit-border-radius: 0 0 5px 5px;
@@ -177,10 +179,10 @@ body {
     -moz-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
     /*directx*/
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff080808',endColorstr='#ff080808',GradientType=0);
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-    -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff080808', endColorstr='#ff080808', GradientType=0);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 }
 
 .page-header .controls {
@@ -204,13 +206,11 @@ body {
     color: #fff;
 }
 
-
 .brand:hover {
     text-decoration: none;
     color: #da633f;
-    text-shadow: 0 1px 0 rgba(255, 197, 88,.1), 0 0 30px rgba(255, 197, 88,.4);
+    text-shadow: 0 1px 0 rgba(255, 197, 88, .1), 0 0 30px rgba(255, 197, 88, .4);
 }
-
 
 .brand {
     display: block;
@@ -221,14 +221,13 @@ body {
     font-weight: 200;
     color: #fff;
     text-shadow: 0 1px 0 #080808;
-    font-family: "Open Sans",Calibri,Candara,Arial,sans-serif;
+    font-family: "Open Sans", Calibri, Candara, Arial, sans-serif;
     font-weight: bold;
-    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
     transition: all .2s linear;
 }
-
 
 /*forms*/
 
@@ -296,7 +295,6 @@ textarea.form-input {
     border-radius: 6px;
 }
 
-
 .btn-success {
     color: #fff;
     background-color: #5cb85c;
@@ -350,7 +348,6 @@ textarea.form-input {
     background-color: transparent;
     transition: all .5s;
 }
-
 
 /*input*/
 
@@ -465,7 +462,6 @@ textarea.form-input {
     padding-left: 15px;
 }
 
-
 @media (max-width: 991px) {
     .sm-width-1 {
         width: 8%;
@@ -574,7 +570,6 @@ textarea.form-input {
     }
 }
 
-
 .page-wrapper {
     padding-top: 20px;
 }
@@ -605,7 +600,7 @@ textarea.form-input {
     content: " ";
 }
 
-.clearfix:after, .dl-horizontal dd:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical>.btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-footer:after {
+.clearfix:after, .dl-horizontal dd:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-footer:after {
     clear: both;
 }
 
@@ -629,7 +624,7 @@ textarea.form-input {
     margin: 0
 }
 
-.input-group-btn:last-child>.btn {
+.input-group-btn:last-child > .btn {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -654,7 +649,7 @@ textarea.form-input {
 .tab-content {
     background-color: #ffffff;
     border-radius: 0 0 5px 5px;
-    border: 6px solid  #dacf9c;
+    border: 6px solid #dacf9c;
     padding: 15px;
     min-height: 200px;
 }
@@ -663,8 +658,7 @@ textarea.form-input {
     display: none;
 }
 
-
-.tab-inner.active{
+.tab-inner.active {
     display: block;
 }
 

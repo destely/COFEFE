@@ -6,23 +6,14 @@ package main.java.ru.eltech.cofefe.core.entity;
 public class CartItem {
 
     private Cofefe cofefe;
+    private int quantity = 0;
 
     public CartItem(Cofefe cofefe) {
         this.cofefe = cofefe;
     }
 
-    private int quantity = 0;
-
     public long getId() {
         return cofefe.getId();
-    }
-
-    public void setDescription(String description) {
-        cofefe.setDescription(description);
-    }
-
-    public void setShortDescription(String shortDescription) {
-        cofefe.setShortDescription(shortDescription);
     }
 
     public void setId(long id) {
@@ -33,24 +24,32 @@ public class CartItem {
         return cofefe.getImage();
     }
 
+    public void setImage(String image) {
+        cofefe.setImage(image);
+    }
+
     public String getDescription() {
         return cofefe.getDescription();
+    }
+
+    public void setDescription(String description) {
+        cofefe.setDescription(description);
     }
 
     public String getTitle() {
         return cofefe.getTitle();
     }
 
+    public void setTitle(String title) {
+        cofefe.setTitle(title);
+    }
+
     public String getShortDescription() {
         return cofefe.getShortDescription();
     }
 
-    public void setImage(String image) {
-        cofefe.setImage(image);
-    }
-
-    public void setTitle(String title) {
-        cofefe.setTitle(title);
+    public void setShortDescription(String shortDescription) {
+        cofefe.setShortDescription(shortDescription);
     }
 
     public int getQuantity() {

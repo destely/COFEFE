@@ -18,9 +18,9 @@
 
     <div class="row">
         <div class="title">
-        <h2>
-            <b>${cofefe.title}</b>
-        </h2>
+            <h2>
+                <b>${cofefe.title}</b>
+            </h2>
         </div>
     </div>
 
@@ -70,7 +70,7 @@
 
     function removeClass(el, cls) {//удаление класса из строки классов
         var oldClassName = el.className;
-        var idx = oldClassName.indexOf(cls);//находим индекса класса в строке
+        var idx = oldClassName.indexOf(cls);//находим индекс класса в строке
         var newClassName = "";
         if (idx != -1) {//если найдено
             newClassName += oldClassName.substr(0, idx) + oldClassName.substr(idx + cls.length, oldClassName.length);
@@ -79,18 +79,18 @@
     }
 
     function generateCallback(id) {
-        return function() {
+        return function () {
             var ajaxRequest = new AjaxRequest({
                 url: "/cofefe/app/cart/update?id=" + id + "&value=1",
                 contentType: "application/json",
                 dataType: "json"
-            }, function(data) {
+            }, function (data) {
                 if (data.success) {
-                    alert("Ура");
+                    alert("Продукт добавлен в корзину!");
                 } else {
-                    alert(":(");
+                    alert("Не удалось добавить продукт в корзину!");
                 }
-            }, function(error) {
+            }, function (error) {
                 alert("Error: " + error);
             });
         };
@@ -102,8 +102,8 @@
     var tabButtons = document.getElementsByClassName("tab");//список всех кнопок
     for (var i = 0; i < tabButtons.length; i++) {//каждой кнопке задаем обработчик нажатия
         var button = tabButtons[i];
-        button.onclick = function(btn) {
-            return function() {
+        button.onclick = function (btn) {
+            return function () {
                 var id = btn.attributes.data.value;
                 var newTab = document.getElementById(id);
                 newTab.className += " active";

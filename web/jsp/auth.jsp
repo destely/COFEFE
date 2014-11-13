@@ -12,7 +12,7 @@
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="main.java.ru.eltech.cofefe.lang"/>
 
-<div class="container" >
+<div class="container">
     <c:set var="actionUrl"><c:url value="/app/auth/"/></c:set>
     <form action="${actionUrl}" method="POST">
         <div class="form-control">

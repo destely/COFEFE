@@ -19,6 +19,7 @@
         <c:set var="link" scope="request"><c:url value="/app/product?id="/></c:set>
         <c:set var="imgLink" scope="request"><c:url value="/images"/></c:set>
         <c:set var="removeLink" scope="request"><c:url value="/app/cart/remove?id="/></c:set>
+        <c:if test="${empty cart}">Корзина пуста.</c:if>
         <c:forEach var="item" items="${cart}">
             <div style="margin-bottom: 20px;" class="width-5">
                 <div class="row">
@@ -45,16 +46,16 @@
                         <fmt:message key="NOW_IN_CART"/> ${item.quantity}
                     </div>
                     <div class="width-6">
-                        <a href="${removeLink}${item.id}" class="btn btn-outline btn-normal"><fmt:message key="REMOVE_FROM_CART"/></a>
+                        <a href="${removeLink}${item.id}" class="btn btn-outline btn-normal">
+                            <fmt:message key="REMOVE_FROM_CART"/></a>
                     </div>
                 </div>
             </div>
         </c:forEach>
-
-
-            <a href="#" onclick="alert('Для совершения заказа, авторизуйтесь.') "class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>
-            <%--<c:set var="orderLink"><c:url value="/app/cart/order"/></c:set>--%>
-        <%--<a href="${orderLink}" class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>--%>
+        <c:if test="${not empty cart}">
+            <a href="#" onclick="alert('Для совершения заказа, авторизуйтесь.') "
+               class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>
+        </c:if>
     </div>
 </div>
 

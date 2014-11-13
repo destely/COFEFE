@@ -34,7 +34,7 @@ public class CartController implements BaseController {
             remove(request, response);
         } else if (requestURI.contains("order")) {
             order(request, response);
-        }  else {
+        } else {
             list(request, response);
         }
     }
@@ -44,7 +44,7 @@ public class CartController implements BaseController {
 
     }
 
-    private void update (final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+    private void update(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
         String idString = request.getParameter("id");
         Long id = Long.parseLong(idString);
         Cofefe cofefe = cofefeProvider.getById(id);
@@ -65,7 +65,7 @@ public class CartController implements BaseController {
         int quantity = cartItem.getQuantity();
         String valueString = request.getParameter("value");
         Long value = Long.parseLong(valueString);
-        int oldQuantity  = quantity;
+        int oldQuantity = quantity;
         quantity += value;
         JSONObject jsonObject = new JSONObject();
         if (value < 0) {
@@ -116,7 +116,7 @@ public class CartController implements BaseController {
             session.setAttribute("cart", cart);
         }
         CartItem item = cart.get(id);
-       // cart.remove(id);
+        // cart.remove(id);
         if (item != null) {
             int quantity = item.getQuantity();
             if (quantity > 1) {

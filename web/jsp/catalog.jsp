@@ -70,11 +70,8 @@
         setCookie("query", val, 1000000);
     };//выставляем куки по такому ключу с таким значением на время
     var cookieVal = getCookie("query");
-    if (cookieVal) {
-        queryField.value = cookieVal;
-    }
-    var searchBtn = document.getElementById("search_btn");
-    searchBtn.onclick = function() {
+
+    function search() {
         var ajaxRequest = new AjaxRequest({
             url: "/cofefe/app/catalog/search?query=" + queryField.value,
             contentType: "application/json",
@@ -91,6 +88,25 @@
             alert("Error: " + error);
         });
     };
+
+    function createFromTemplate(element, cofefe) {
+        var clone = element.cloneNode(true);
+        clone.style.display = "";
+        clone.getElementsByClassName("template_image")[0].src += cofefe.image;
+        clone.getElementsByClassName("template_link")[0].href += cofefe.id;
+        clone.getElementsByClassName("template_title")[0].innerText += cofefe.title;
+        clone.getElementsByClassName("template_description")[0].innerText = cofefe.description;
+        clone.getElementsByClassName("add_to_cart")[0].onclick = generateCallback(cofefe.id);
+        clone.removeAttribute("id");
+        return clone;
+    }
+
+    if (cookieVal) {
+        queryField.value = cookieVal;
+        search();
+    }
+    var searchBtn = document.getElementById("search_btn");
+    searchBtn.onclick = search;
 
     function generateCallback(id) {
         return function() {
@@ -116,18 +132,6 @@
         button.onclick = generateCallback(button.attributes["cofefe-id"].value);
     }
 
-    function createFromTemplate(element, cofefe) {
-        var clone = element.cloneNode(true);
-        clone.style.display = "";
-        clone.getElementsByClassName("template_image")[0].src += cofefe.image;
-        clone.getElementsByClassName("template_link")[0].href += cofefe.id;
-        clone.getElementsByClassName("template_title")[0].innerText += cofefe.title;
-        clone.getElementsByClassName("template_description")[0].innerText = cofefe.description;
-        clone.getElementsByClassName("add_to_cart")[0].onclick = generateCallback(cofefe.id);
-
-        clone.removeAttribute("id");
-        return clone;
-    }
 
     function setCookie(c_name, value, exdays) {
         var exdate = new Date();

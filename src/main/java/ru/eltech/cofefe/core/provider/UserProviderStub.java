@@ -10,10 +10,9 @@ import java.util.Map;
  */
 public class UserProviderStub implements UserProvider {
 
+    private static final UserProviderStub instance = new UserProviderStub();
     private Map<Long, User> userById = new HashMap<>();
     private Map<String, User> userByLogin = new HashMap<>();
-
-    private static final UserProviderStub instance = new UserProviderStub();
 
     private UserProviderStub() {
         User user = new User();

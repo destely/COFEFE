@@ -38,7 +38,7 @@ public class MainServlet extends HttpServlet {
             req.setAttribute("user", user);
         }
         String localeString = (String) session.getAttribute("locale");
-        if (localeString ==  null) {
+        if (localeString == null) {
             String curLocaleFromCookie = null;
             for (Cookie cookie : req.getCookies()) {
                 if ("locale".equals(cookie.getName())) {
@@ -70,7 +70,7 @@ public class MainServlet extends HttpServlet {
             req.setAttribute("user", user);
         }
         String localeString = (String) session.getAttribute("locale");
-        if (localeString ==  null) {
+        if (localeString == null) {
             String curLocaleFromCookie = null;
             for (Cookie cookie : req.getCookies()) {
                 if ("locale".equals(cookie.getName())) {

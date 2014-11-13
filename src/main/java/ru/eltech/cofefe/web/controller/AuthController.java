@@ -18,8 +18,8 @@ public class AuthController implements BaseController {
 
     @Override
     public void handleGetRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-         request.setAttribute("content", "auth.jsp");
-         request.getRequestDispatcher("/jsp/common.jsp").forward(request,response);
+        request.setAttribute("content", "auth.jsp");
+        request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class AuthController implements BaseController {
         if (user == null) {
             request.setAttribute("error", "Пользователь не найден");
             request.setAttribute("content", "error.jsp");
-            request.getRequestDispatcher("/jsp/common.jsp").forward(request,response);
+            request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
             return;
         }
         String userPassword = user.getPassword();
@@ -45,7 +45,7 @@ public class AuthController implements BaseController {
         } else {
             request.setAttribute("error", "Неправильный пароль");
             request.setAttribute("content", "error.jsp");
-            request.getRequestDispatcher("/jsp/common.jsp").forward(request,response);
+            request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
         }
     }
 
