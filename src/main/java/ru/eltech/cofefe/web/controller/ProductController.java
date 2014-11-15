@@ -15,6 +15,11 @@ import java.io.IOException;
 public class ProductController implements BaseController {
 
     private CofefeProvider cofefeProvider = CofefeProviderStub.getInstance();
+    private String initTab;
+
+    public ProductController(String initTab) {
+        this.initTab = initTab;
+    }
 
     @Override
     public void handlePostRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -24,6 +29,7 @@ public class ProductController implements BaseController {
     @Override
     public void handleGetRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("content", "product.jsp");
+        request.setAttribute("initTab", initTab);
         String idString = request.getParameter("id");
         Long id = Long.parseLong(idString);
         Cofefe cofefe = cofefeProvider.getById(id);

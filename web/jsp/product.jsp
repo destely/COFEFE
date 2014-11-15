@@ -34,26 +34,26 @@
         <div class="width-6">
             <div class="row">
                 <div class="tabs">
-                    <div class="tab active width-3" id="short" data="tab_short">
+                    <div class="tab <c:if test="${initTab eq 'tab_short'}"> active </c:if>width-3" id="short" data="tab_short">
                         <div class="tab-name"><fmt:message key="DESCRIPTION"/></div>
                     </div>
-                    <div class="tab width-3" id="full" data="tab_full">
+                    <div class="tab <c:if test="${initTab eq 'tab_full'}"> active </c:if> width-3" id="full" data="tab_full">
                         <div class="tab-name"><fmt:message key="DETAILS"/></div>
                     </div>
-                    <div class="tab width-3" data="tab_comments">
+                    <div class="tab <c:if test="${initTab eq 'tab_comments'}"> active </c:if> width-3" data="tab_comments">
                         <div class="tab-name"><fmt:message key="REVIEWS"/></div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="tab-content">
-                    <div id="tab_short" class="tab-inner active">
+                    <div id="tab_short" class="tab-inner<c:if test="${initTab eq 'tab_short'}"> active </c:if>">
                         ${cofefe.shortDescription}
                     </div>
-                    <div id="tab_full" class="tab-inner">
+                    <div id="tab_full" class="tab-inner<c:if test="${initTab eq 'tab_full'}"> active </c:if>">
                         ${cofefe.description}
                     </div>
-                    <div id="tab_comments" class="tab-inner">
+                    <div id="tab_comments" class="tab-inner<c:if test="${initTab eq 'tab_comments'}"> active </c:if>">
                     </div>
                 </div>
             </div>

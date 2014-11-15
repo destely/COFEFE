@@ -18,17 +18,6 @@ public class CofefeProviderStub implements CofefeProvider {
     private List<Cofefe> list = new ArrayList<>(20);
 
     private CofefeProviderStub() {
-    /*    Random random = new Random();
-        for(int i = 0; i < 10; i++) {
-            Cofefe cofefe = new Cofefe();
-            cofefe.setId(i);
-            cofefe.setTitle("Cofefe [" + random.nextInt() + "]");
-            cofefe.setShortDescription("Это кофе");
-            cofefe.setDescription("Это кофе, кофе кофе фе");
-            cofefe.setImage("espr_robysta.jpg");
-            list.add(cofefe);
-        }
-    */
         Cofefe robusta = new Cofefe();
         robusta.setId(0);
         robusta.setTitle("Робуста");
@@ -42,7 +31,7 @@ public class CofefeProviderStub implements CofefeProvider {
 
         Cofefe ruanda = new Cofefe();
         ruanda.setId(1);
-        ruanda.setTitle("Ruanda");
+        ruanda.setTitle("Руанда");
         ruanda.setShortDescription("639 p./100 г.");
         ruanda.setDescription("Редкий эксклюзивный сорт кофе из Африки класса спешилти. Средний по крепости, с винными нотками" +
                 " в аромате, послевкусием молочного шоколада с дольками лимона.\n" +

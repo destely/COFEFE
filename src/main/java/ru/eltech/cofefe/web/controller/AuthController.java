@@ -18,6 +18,12 @@ public class AuthController implements BaseController {
 
     @Override
     public void handleGetRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String requestURI = request.getRequestURI();
+        if (requestURI.contains("logout")) {
+            request.getSession().invalidate();
+            response.sendRedirect("/cofefe/app");
+            return;
+        }
         request.setAttribute("content", "auth.jsp");
         request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
     }

@@ -7,17 +7,16 @@
         <a href="${brandLink}" class="brand movieshop-brand">
             Cofefe
         </a>
-
         <div class="controls">
             <c:set var="cart"><c:url value="/app/cart"/></c:set>
             <a href="${cart}" class="control">
                 <i class="fa fa-shopping-cart"></i>
             </a>
-            <c:set var="profileLink"><c:url value=""/></c:set>
+            <c:set var="profileLink"><c:url value="/app/profile"/></c:set>
             <a href="${profileLink}" class="control">
                 <i class="fa fa-user"></i>
             </a>
-            <c:set var="logoutLink"><c:url value="/app/logout"/></c:set>
+            <c:set var="logoutLink"><c:url value="/app/auth/logout"/></c:set>
             <c:set var="loginLink"><c:url value="/app/auth"/></c:set>
             <c:choose>
                 <c:when test="${user ne null}">

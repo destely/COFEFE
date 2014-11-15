@@ -14,9 +14,37 @@
     <servlet>
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>main.java.ru.eltech.cofefe.web.MainServlet</servlet-class>
+        <init-param>
+            <param-name>initTab</param-name>
+            <param-value>tab_full</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/app/*</url-pattern>
     </servlet-mapping>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
+            <url-pattern>/app/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>user</role-name>
+        </auth-constraint>
+
+        <user-data-constraint>
+            <!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/jsp/declarative_auth.jsp</form-login-page>
+            <form-error-page>/jsp/declarative_auth.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
 </web-app>
