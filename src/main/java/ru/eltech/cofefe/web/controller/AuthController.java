@@ -24,12 +24,13 @@ public class AuthController implements BaseController {
             response.sendRedirect("/cofefe/app");
             return;
         }
-        request.setAttribute("content", "auth.jsp");
-        request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
+        response.sendRedirect("/cofefe/app");
     }
+
 
     @Override
     public void handlePostRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        /*
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String referer = request.getParameter("referer"); //откуда пришёл пользователь
@@ -53,6 +54,8 @@ public class AuthController implements BaseController {
             request.setAttribute("content", "error.jsp");
             request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
         }
+        */
     }
+
 
 }

@@ -131,12 +131,7 @@ public class CartController implements BaseController {
     private void order(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("content", "cart.jsp");
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            response.sendRedirect("/cofefe/app/auth");
-        } else {
-            response.sendRedirect("/cofefe/app/cart");
-        }
+        response.sendRedirect("/cofefe/app/cart");
     }
 
 }

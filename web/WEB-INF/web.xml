@@ -23,10 +23,12 @@
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/app/*</url-pattern>
     </servlet-mapping>
+    <!--информация о защищаемых страницах -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
-            <url-pattern>/app/*</url-pattern>
+            <url-pattern>/app/cart/order</url-pattern>
+            <url-pattern>/app/auth/protected</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -39,12 +41,12 @@
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
-
+    <!--определение способа авторизации-->
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/jsp/declarative_auth.jsp</form-login-page>
-            <form-error-page>/jsp/declarative_auth.jsp</form-error-page>
+            <form-error-page>/jsp/error.jsp</form-error-page>
         </form-login-config>
     </login-config>
 </web-app>

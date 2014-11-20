@@ -53,8 +53,16 @@
             </div>
         </c:forEach>
         <c:if test="${not empty cart}">
-            <a href="#" onclick="alert('Для совершения заказа, авторизуйтесь.') "
-               class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>
+            <c:choose>
+                <c:when test="${empty user}">
+                    <c:set var="orderUrl"><c:url value="/app/cart/order"/></c:set>
+                    <a href="${orderUrl}" class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>
+                </c:when>
+                <c:otherwise>
+                    <a href="#" onclick="alert('Страница заказа недоступна.') "
+                       class="btn btn-outline btn-normal"><fmt:message key="ORDER"/></a>
+                </c:otherwise>
+            </c:choose>
         </c:if>
     </div>
 </div>

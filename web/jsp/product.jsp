@@ -34,13 +34,16 @@
         <div class="width-6">
             <div class="row">
                 <div class="tabs">
-                    <div class="tab <c:if test="${initTab eq 'tab_short'}"> active </c:if>width-3" id="short" data="tab_short">
+                    <div class="tab <c:if test="${initTab eq 'tab_short'}"> active </c:if>width-3" id="short"
+                         data="tab_short">
                         <div class="tab-name"><fmt:message key="DESCRIPTION"/></div>
                     </div>
-                    <div class="tab <c:if test="${initTab eq 'tab_full'}"> active </c:if> width-3" id="full" data="tab_full">
+                    <div class="tab <c:if test="${initTab eq 'tab_full'}"> active </c:if> width-3" id="full"
+                         data="tab_full">
                         <div class="tab-name"><fmt:message key="DETAILS"/></div>
                     </div>
-                    <div class="tab <c:if test="${initTab eq 'tab_comments'}"> active </c:if> width-3" data="tab_comments">
+                    <div class="tab <c:if test="${initTab eq 'tab_comments'}"> active </c:if> width-3"
+                         data="tab_comments">
                         <div class="tab-name"><fmt:message key="REVIEWS"/></div>
                     </div>
                 </div>

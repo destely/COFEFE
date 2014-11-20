@@ -54,7 +54,8 @@
         </div>
         <div class="row" style="margin-top: 10px;">
             <div class="width-12">
-                <div name="add_to_cart" class="btn btn-outline btn-normal add_to_cart"><fmt:message key="ADD_TO_CART"/></div>
+                <div name="add_to_cart" class="btn btn-outline btn-normal add_to_cart"><fmt:message
+                        key="ADD_TO_CART"/></div>
             </div>
         </div>
     </div>
@@ -65,7 +66,7 @@
 
     var results = document.getElementById("results");
     var queryField = document.getElementById("search");
-    queryField.onkeyup = function() {
+    queryField.onkeyup = function () {
         var val = queryField.value;
         setCookie("query", val, 1000000);
     };//выставляем куки по такому ключу с таким значением на время
@@ -76,7 +77,7 @@
             url: "/cofefe/app/catalog/search?query=" + queryField.value,
             contentType: "application/json",
             dataType: "json"
-        }, function(data) {
+        }, function (data) {
             data = data["result"];
             var template = document.getElementById("template");
             results.innerHTML = "";
@@ -84,10 +85,11 @@
                 var clone = createFromTemplate(template, data[i]);
                 results.appendChild(clone);
             }
-        }, function(error) {
+        }, function (error) {
             alert("Error: " + error);
         });
-    };
+    }
+    ;
 
     if (cookieVal) {
         queryField.value = cookieVal;
@@ -97,18 +99,18 @@
     searchBtn.onclick = search;
 
     function generateCallback(id) {
-        return function() {
+        return function () {
             var ajaxRequest = new AjaxRequest({
                 url: "/cofefe/app/cart/update?id=" + id + "&value=1",
                 contentType: "application/json",
                 dataType: "json"
-            }, function(data) {
+            }, function (data) {
                 if (data.success) {
                     alert("Продукт добавлен в корзину!");
                 } else {
                     alert("Не удалось добавить продукт в корзину!");
                 }
-            }, function(error) {
+            }, function (error) {
                 alert("Error: " + error);
             });
         };
