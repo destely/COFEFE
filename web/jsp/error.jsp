@@ -7,4 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<h1><b>${error}</b></h1>
+<h1>
+  <b>
+    Введён неправильный логин/пароль.
+  </b>
+</h1>
