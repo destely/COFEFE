@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "cofefeUsers")
 @NamedQuery(name = "User.getAll", query = "SELECT c from User c")
 public class User {
 

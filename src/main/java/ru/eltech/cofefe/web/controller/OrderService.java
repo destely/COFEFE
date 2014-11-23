@@ -6,8 +6,10 @@ import java.util.List;
 /**
  * Created by Юлия on 23.11.2014.
  */
+
 public class OrderService {
     public EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
+
 
     public Order add(Order order){
         em.getTransaction().begin();

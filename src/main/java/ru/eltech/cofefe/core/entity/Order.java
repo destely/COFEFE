@@ -1,5 +1,6 @@
 package main.java.ru.eltech.cofefe.core.entity;
 import javax.persistence.*;
+import java.text.DateFormat;
 import java.util.*;
 
 /**
@@ -20,7 +21,7 @@ public class Order {
 
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private DateFormat date;
 
     @Column(name = "address")
     private String address;
@@ -33,13 +34,19 @@ public class Order {
         this.id = id;
     }
 
+    public void setProducts(List<Cofefe> products) { this.products = products; }
+
     public List<Cofefe> getOrders() { return products; }
 
     public void  setOrders(List<Cofefe> orders) { this.products = products; }
 
-    public Date getDate() { return date; }
+    public String getAddress() { return address; }
 
-    public void setDate(Date date) { this.date = date; }
+    public void setAddress(String address) { this.address = address; }
+
+    public DateFormat getDate() { return date; }
+
+    public void setDate(DateFormat date) { this.date = date; }
 
 
     @Override

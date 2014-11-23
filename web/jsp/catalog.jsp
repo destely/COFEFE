@@ -88,8 +88,7 @@
         }, function (error) {
             alert("Error: " + error);
         });
-    }
-    ;
+    };
 
     if (cookieVal) {
         queryField.value = cookieVal;

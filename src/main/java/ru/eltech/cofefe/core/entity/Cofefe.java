@@ -5,7 +5,7 @@ import javax.persistence.*;
  * Created by destely on 19.10.2014.
  */
 @Entity
-@Table(name = "cofefe")
+@Table(name = "cofefeProducts")
 @NamedQuery(name = "Cofefe.getAll", query = "SELECT c from Cofefe c")
 //Запрос к сущности Cofefe; получение всех продуктов
 public class Cofefe {
