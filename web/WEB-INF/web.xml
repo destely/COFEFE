@@ -31,7 +31,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
-            <url-pattern>/app/cart/order</url-pattern>
+            <url-pattern>/app/cart/auth</url-pattern>
             <url-pattern>/app/auth/protected</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>

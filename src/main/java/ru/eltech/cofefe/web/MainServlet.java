@@ -18,7 +18,6 @@ import java.util.Map;
 public class MainServlet extends HttpServlet {
 
     private Map<String, BaseController> controllerMap = new HashMap<String, BaseController>();
-  //  private Locale defaultLocale = Locale.ENGLISH;
     private Locale defaultLocale;
     private String initTab;
 
@@ -33,6 +32,7 @@ public class MainServlet extends HttpServlet {
         controllerMap.put(".*\\/cart.*", new CartController());
         controllerMap.put(".*\\/auth.*", new AuthController());
         controllerMap.put(".*\\/profile.*", new ProfileController(initTab));
+        controllerMap.put(".*\\/order.*", new OrderController());
     }
 
     @Override

@@ -52,6 +52,7 @@ public class CartController implements BaseController {
         Object o = session.getAttribute("cart");
         CartItem cartItem = null;
         Map<Long, CartItem> cart = null;
+
         if (o != null) {
             cart = (Map<Long, CartItem>) o;
         } else {
@@ -129,9 +130,10 @@ public class CartController implements BaseController {
     }
 
     private void order(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("content", "cart.jsp");
+       // request.setAttribute("content", "cart.jsp");
+       request.setAttribute("content", "order.jsp");
         HttpSession session = request.getSession();
         response.sendRedirect("/cofefe/app/cart");
-    }
+            }
 
 }

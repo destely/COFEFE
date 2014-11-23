@@ -1,6 +1,7 @@
 package main.java.ru.eltech.cofefe.core.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by destely on 03.11.2014.
@@ -20,6 +21,9 @@ public class User {
 
     @Column(name = "password", length = 32)
     private String password;
+
+    @ManyToMany
+    List<Order> orders;
 
     public String getLogin() {
         return login;
@@ -45,12 +49,17 @@ public class User {
         this.id = id;
     }
 
+    public List<Order> getOrders() { return orders; }
+
+    public void setOrders(List<Order> orders) { this.orders = orders; }
+
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", orders='" + orders + '\'' +
                 '}';
     }
 
