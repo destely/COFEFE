@@ -1,18 +1,29 @@
 package main.java.ru.eltech.cofefe.core.entity;
+import javax.persistence.*;
 
 /**
  * Created by destely on 19.10.2014.
  */
+@Entity
+@Table(name = "cofefe")
+@NamedQuery(name = "Cofefe.getAll", query = "SELECT c from Cofefe c")
+//Запрос к сущности Cofefe; получение всех продуктов
 public class Cofefe {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(name = "title", length = 32)
     private String title;
 
+    @Column(name = "image")
     private String image;
 
+    @Column(name = "shortDescription")
     private String shortDescription;
 
+    @Column(name = "Description")
     private String description;
 
     public long getId() {
@@ -58,7 +69,8 @@ public class Cofefe {
     @Override
     public String toString() {
         return "Cofefe{" +
-                "title='" + title + '\'' +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
                 ", image='" + image + '\'' +
                 ", shortDescription='" + shortDescription + '\'' +
                 ", description='" + description + '\'' +

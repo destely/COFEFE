@@ -18,7 +18,8 @@ import java.util.Map;
 public class MainServlet extends HttpServlet {
 
     private Map<String, BaseController> controllerMap = new HashMap<String, BaseController>();
-    private Locale defaultLocale = Locale.ENGLISH;
+  //  private Locale defaultLocale = Locale.ENGLISH;
+    private Locale defaultLocale;
     private String initTab;
 
     @Override

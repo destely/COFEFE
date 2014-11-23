@@ -2,7 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
+<%--@elvariable id="locale" type="java.util.Locale"--%>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="main.java.ru.eltech.cofefe.lang"/>
 <%--
   Created by IntelliJ IDEA.
   User: destely
@@ -10,9 +12,6 @@
   Time: 19:42
   To change this template use File | Settings | File Templates.
 --%>
-
-<fmt:setLocale value="${locale}"/>
-<fmt:setBundle basename="main.java.ru.eltech.cofefe.lang"/>
 
 <html>
 <head>
@@ -24,9 +23,6 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<%--@elvariable id="locale" type="java.util.Locale"--%>
-<fmt:setLocale value="${locale}"/>
-<fmt:setBundle basename="main.java.ru.eltech.cofefe.lang"/>
 
 <div class="container">
     <c:set var="actionUrl"><c:url value="j_security_check"/></c:set>

@@ -15,6 +15,10 @@
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>main.java.ru.eltech.cofefe.web.MainServlet</servlet-class>
         <init-param>
+            <param-name>defaultLocale</param-name>
+            <param-value>Locale.ENGLISH</param-value>
+        </init-param>
+        <init-param>
             <param-name>initTab</param-name>
             <param-value>tab_full</param-value>
         </init-param>

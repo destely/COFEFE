@@ -30,31 +30,7 @@ public class AuthController implements BaseController {
 
     @Override
     public void handlePostRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        /*
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        String referer = request.getParameter("referer"); //откуда пришёл пользователь
-        User user = userProvider.getByLogin(login);
-        if (user == null) {
-            request.setAttribute("error", "Пользователь не найден");
-            request.setAttribute("content", "error.jsp");
-            request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
-            return;
-        }
-        String userPassword = user.getPassword();
-        if (userPassword.equals(password)) {
-            request.getSession().setAttribute("user", user);
-            if (referer == null || referer.isEmpty()) {
-                response.sendRedirect("/cofefe/app/catalog");
-            } else {
-                response.sendRedirect(referer);
-            }
-        } else {
-            request.setAttribute("error", "Неправильный пароль");
-            request.setAttribute("content", "error.jsp");
-            request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
-        }
-        */
+
     }
 
 
