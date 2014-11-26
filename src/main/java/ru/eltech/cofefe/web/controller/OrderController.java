@@ -114,6 +114,7 @@ public class OrderController implements BaseController {
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", true);
+
         response.getOutputStream().print(jsonObject.toJSONString());
     }
 
