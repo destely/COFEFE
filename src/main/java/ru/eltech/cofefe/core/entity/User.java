@@ -8,11 +8,20 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "cofefeUsers")
-@NamedQuery(name = "User.getAll", query = "SELECT c from User c")
+@Table(name = "users")
+@NamedQueries({
+        @NamedQuery(name = "User.getAll", query = "SELECT c from User c"),
+        @NamedQuery(name = "User.findByLogin", query = "SELECT h FROM User h WHERE h.login = :login")
+})
 public class User {
 
+    //@TableGenerator(name = "cartid", table = "cartpktb", pkColumnName = "idCart",
+   //         pkColumnValue = "idCartValue",allocationSize = 1)
+   // @GeneratedValue (strategy = GenerationType.TABLE, generator = "cartid")
+
+
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -49,9 +58,13 @@ public class User {
         this.id = id;
     }
 
-    public List<Order> getOrders() { return orders; }
+    public List<Order> getOrders() {
+        return orders;
+    }
 
-    public void setOrders(List<Order> orders) { this.orders = orders; }
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
     @Override
     public String toString() {
@@ -62,5 +75,4 @@ public class User {
                 ", orders='" + orders + '\'' +
                 '}';
     }
-
 }

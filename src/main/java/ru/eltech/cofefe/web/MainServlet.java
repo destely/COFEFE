@@ -48,10 +48,12 @@ public class MainServlet extends HttpServlet {
         String localeString = (String) session.getAttribute("locale");
         if (localeString == null) {
             String curLocaleFromCookie = null;
-            for (Cookie cookie : req.getCookies()) {
-                if ("locale".equals(cookie.getName())) {
-                    curLocaleFromCookie = cookie.getValue();
-                    break;
+            if(req.getCookies() != null) {
+                for (Cookie cookie : req.getCookies()) {
+                    if ("locale".equals(cookie.getName())) {
+                        curLocaleFromCookie = cookie.getValue();
+                        break;
+                    }
                 }
             }
             if (curLocaleFromCookie == null) {

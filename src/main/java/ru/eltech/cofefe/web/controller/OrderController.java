@@ -16,10 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Юлия on 23.11.2014.
@@ -32,10 +29,10 @@ public class OrderController implements BaseController {
     public void handleGetRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String requestURI = request.getRequestURI();
         if (requestURI.contains("checkout")) {
-            checkout(request, response);//вызов метода
-        } else {
-            list(request, response);
+            checkout(request,response);
+            return;
         }
+        list(request, response);
     }
 
     @Override
@@ -43,31 +40,25 @@ public class OrderController implements BaseController {
     }
 
     private void list(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+//
+//       request.setAttribute("content", "order.jsp");
+//        HttpSession session = request.getSession();
+//        Object o = session.getAttribute("cart");
+//        Map<Long, CartItem> cart = null;
+//        if (o != null) {
+//            cart = (Map<Long, CartItem>) o;
+//        } else {
+//            cart = new HashMap<Long, CartItem>();
+//            session.setAttribute("cart", cart);
+//        }
+//        List<CartItem> list = new LinkedList<>();
+//        for (CartItem cartItem : cart.values()) {
+//            list.add(cartItem);
+//        }
+//        request.setAttribute("cart", list);
+//        request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
 
-       request.setAttribute("content", "order.jsp");
-        HttpSession session = request.getSession();
-        Object o = session.getAttribute("cart");
-        Map<Long, CartItem> cart = null;
-        if (o != null) {
-            cart = (Map<Long, CartItem>) o;
-        } else {
-            cart = new HashMap<Long, CartItem>();
-            session.setAttribute("cart", cart);
-        }
-        List<CartItem> list = new LinkedList<>();
-        for (CartItem cartItem : cart.values()) {
-            list.add(cartItem);
-        }
-        request.setAttribute("cart", list);
-        request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
-
-    }
-
-    private void checkout(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        Order order = new Order();
-        order.setDate(DateFormat.getDateInstance());
-        order.setAddress("блааааа");
-
+        request.setAttribute("content", "order.jsp");
         HttpSession session = request.getSession();
         Object o = session.getAttribute("cart");
         Map<Long, Cofefe> cart = null;
@@ -81,34 +72,49 @@ public class OrderController implements BaseController {
         for (Cofefe cartItem : cart.values()) {
             list.add(cartItem);
         }
-        List<Order> ord = null;
-        ord.add(order);
-        User user = new User();
-        user.setOrders(ord);
-        response.setContentType("text/java");
-         PrintWriter out = response.getWriter();
-        out.print("Выполнено");
-        out.flush();
-      // order.setProducts(list);
+        request.setAttribute("cart", list);
+        request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
+    }
 
-        /*String query = request.getParameter("query");
-        List<Cofefe> result = cofefeProvider.search(query);
-        JSONObject object = new JSONObject();
-        JSONArray array = new JSONArray();
-        object.put("result", array);
-        for (Cofefe cofefe : result) {
-            JSONObject _object = new JSONObject();
-            _object.put("title", cofefe.getTitle());
-            _object.put("description", cofefe.getShortDescription());
-            _object.put("image", cofefe.getImage());
-            _object.put("id", cofefe.getId());
-            array.add(_object);
+    private void checkout(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+       request.setAttribute("content", "order.jsp");
+       HttpSession session = request.getSession();
+
+        Order order = new Order();
+
+
+        order.setDate(new Date());
+        order.setAddress("блааааа");
+
+
+        Object o = session.getAttribute("cart");
+        Map<Long, Cofefe> cart = null;
+        if (o != null) {
+            cart = (Map<Long, Cofefe>) o;
+        } else {
+            cart = new HashMap<Long, Cofefe>();
+            session.setAttribute("cart", cart);
         }
-        response.setContentType("application/json");
-        //  response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-        out.print(object.toJSONString());
-        out.flush();*/
+        List<Cofefe> list = new LinkedList<>();
+        for (Cofefe cartItem : cart.values()) {
+            list.add(cartItem);
+           // order.setQuantity(cartItem.get);
+        }
+        OrderService orderService = new OrderService();
+
+        orderService.add(order); //добавляет запись в таблицу заказов
+        List<Order> ord = new LinkedList<>();
+        ord.add(order);
+
+        String login = request.getUserPrincipal().getName();
+        UserService userService = new UserService();
+        List<User> user = userService.findByLogin(login);
+        User usr = user.get(0);
+        userService.update(usr); //обновляет соответствующую запись в таблице пользователей
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("success", true);
+        response.getOutputStream().print(jsonObject.toJSONString());
     }
 
 

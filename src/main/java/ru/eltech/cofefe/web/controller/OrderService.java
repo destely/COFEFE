@@ -11,6 +11,7 @@ public class OrderService {
     public EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
 
 
+
     public Order add(Order order){
         em.getTransaction().begin();
         Order orderFromDB = em.merge(order);

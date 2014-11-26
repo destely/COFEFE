@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="hibernate-3.2.5.ga-sources">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/hibernate-3.2.5.ga-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

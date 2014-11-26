@@ -50,18 +50,18 @@ public class CartController implements BaseController {
         Cofefe cofefe = cofefeProvider.getById(id);
         HttpSession session = request.getSession();
         Object o = session.getAttribute("cart");
-        CartItem cartItem = null;
-        Map<Long, CartItem> cart = null;
+        Cofefe cartItem = null;
+        Map<Long, Cofefe> cart = null;
 
         if (o != null) {
-            cart = (Map<Long, CartItem>) o;
+            cart = (Map<Long, Cofefe>) o;
         } else {
             cart = new HashMap<>();
             session.setAttribute("cart", cart);
         }
         cartItem = cart.get(id);
         if (cartItem == null) {
-            cartItem = new CartItem(cofefe);
+            cartItem = cofefe;
         }
         int quantity = cartItem.getQuantity();
         String valueString = request.getParameter("value");
@@ -82,21 +82,74 @@ public class CartController implements BaseController {
         PrintWriter out = response.getWriter();
         out.print(jsonObject.toJSONString());
         out.flush();
+//        String idString = request.getParameter("id");
+//        Long id = Long.parseLong(idString);
+//        Cofefe cofefe = cofefeProvider.getById(id);
+//        HttpSession session = request.getSession();
+//        Object o = session.getAttribute("cart");
+//        CartItem cartItem = null;
+//        Map<Long, CartItem> cart = null;
+//
+//        if (o != null) {
+//            cart = (Map<Long, CartItem>) o;
+//        } else {
+//            cart = new HashMap<>();
+//            session.setAttribute("cart", cart);
+//        }
+//        cartItem = cart.get(id);
+//        if (cartItem == null) {
+//            cartItem = new CartItem(cofefe);
+//        }
+//        int quantity = cartItem.getQuantity();
+//        String valueString = request.getParameter("value");
+//        Long value = Long.parseLong(valueString);
+//        int oldQuantity = quantity;
+//        quantity += value;
+//        JSONObject jsonObject = new JSONObject();
+//        if (value < 0) {
+//            jsonObject.put("success", false);
+//            jsonObject.put("quantity", oldQuantity);
+//        } else {
+//            cart.put(id, cartItem);
+//            cartItem.setQuantity(quantity);
+//            jsonObject.put("success", true);
+//            jsonObject.put("quantity", quantity);
+//        }
+//        response.setContentType("application/json");
+//        PrintWriter out = response.getWriter();
+//        out.print(jsonObject.toJSONString());
+//        out.flush();
     }
 
     private void list(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+//        request.setAttribute("content", "cart.jsp");
+//        HttpSession session = request.getSession();
+//        Object o = session.getAttribute("cart");
+//        Map<Long, CartItem> cart = null;
+//        if (o != null) {
+//            cart = (Map<Long, CartItem>) o;
+//        } else {
+//            cart = new HashMap<Long, CartItem>();
+//            session.setAttribute("cart", cart);
+//        }
+//        List<CartItem> list = new LinkedList<>();
+//        for (CartItem cartItem : cart.values()) {
+//            list.add(cartItem);
+//        }
+//        request.setAttribute("cart", list);
+//        request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
         request.setAttribute("content", "cart.jsp");
         HttpSession session = request.getSession();
         Object o = session.getAttribute("cart");
-        Map<Long, CartItem> cart = null;
+        Map<Long, Cofefe> cart = null;
         if (o != null) {
-            cart = (Map<Long, CartItem>) o;
+            cart = (Map<Long, Cofefe>) o;
         } else {
-            cart = new HashMap<Long, CartItem>();
+            cart = new HashMap<Long, Cofefe>();
             session.setAttribute("cart", cart);
         }
-        List<CartItem> list = new LinkedList<>();
-        for (CartItem cartItem : cart.values()) {
+        List<Cofefe> list = new LinkedList<>();
+        for (Cofefe cartItem : cart.values()) {
             list.add(cartItem);
         }
         request.setAttribute("cart", list);
@@ -109,14 +162,14 @@ public class CartController implements BaseController {
         Object o = session.getAttribute("cart");
         String idString = request.getParameter("id");
         Long id = Long.parseLong(idString);
-        Map<Long, CartItem> cart = null;
+        Map<Long, Cofefe> cart = null;
         if (o != null) {
-            cart = (Map<Long, CartItem>) o;
+            cart = (Map<Long, Cofefe>) o;
         } else {
-            cart = new HashMap<Long, CartItem>();
+            cart = new HashMap<Long, Cofefe>();
             session.setAttribute("cart", cart);
         }
-        CartItem item = cart.get(id);
+        Cofefe item = cart.get(id);
         // cart.remove(id);
         if (item != null) {
             int quantity = item.getQuantity();
@@ -127,6 +180,29 @@ public class CartController implements BaseController {
             }
         }
         response.sendRedirect("/cofefe/app/cart");
+//        request.setAttribute("content", "cart.jsp");
+//        HttpSession session = request.getSession();
+//        Object o = session.getAttribute("cart");
+//        String idString = request.getParameter("id");
+//        Long id = Long.parseLong(idString);
+//        Map<Long, CartItem> cart = null;
+//        if (o != null) {
+//            cart = (Map<Long, CartItem>) o;
+//        } else {
+//            cart = new HashMap<Long, CartItem>();
+//            session.setAttribute("cart", cart);
+//        }
+//        CartItem item = cart.get(id);
+//        // cart.remove(id);
+//        if (item != null) {
+//            int quantity = item.getQuantity();
+//            if (quantity > 1) {
+//                item.setQuantity(quantity - 1);
+//            } else {
+//                cart.remove(id);
+//            }
+//        }
+//        response.sendRedirect("/cofefe/app/cart");
     }
 
     private void order(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {

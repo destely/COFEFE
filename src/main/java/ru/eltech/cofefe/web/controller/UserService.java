@@ -32,8 +32,15 @@ public class UserService {
     }
 
     public List<User> getAll() {
-        Query query = em.createNamedQuery("SELECT c FROM User c");
+        Query query = em.createQuery("SELECT c FROM User c");
         List results = query.getResultList();
         return results;
+    }
+
+    public List<User> findByLogin(Object login) {
+        Query query = em.createQuery("SELECT h FROM User h WHERE h.login = :login");
+        query.setParameter("login", login);
+        List result = query.getResultList();
+        return result;
     }
 }

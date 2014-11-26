@@ -19,9 +19,12 @@ public class Order {
     @ManyToMany
     List<Cofefe> products;
 
+   // @Column(name = "quantity")
+   // private Integer quantity;
+
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
-    private DateFormat date;
+    private Date date;
 
     @Column(name = "address")
     private String address;
@@ -36,6 +39,12 @@ public class Order {
 
     public void setProducts(List<Cofefe> products) { this.products = products; }
 
+    public List<Cofefe> getProducts(){ return products; }
+
+  //  public Integer getQuantity(){ return quantity; }
+
+  //  public void setQuantity(Integer quantity){ this.quantity = quantity; }
+
     public List<Cofefe> getOrders() { return products; }
 
     public void  setOrders(List<Cofefe> orders) { this.products = products; }
@@ -44,9 +53,9 @@ public class Order {
 
     public void setAddress(String address) { this.address = address; }
 
-    public DateFormat getDate() { return date; }
+    public Date getDate() { return date; }
 
-    public void setDate(DateFormat date) { this.date = date; }
+    public void setDate(Date date) { this.date = date; }
 
 
     @Override
@@ -54,6 +63,7 @@ public class Order {
         return "Order{" +
                 "id='" + id + '\'' +
                 ", products='" + products + '\'' +
+              // ", quantity='" + quantity + '\'' +
                 ", date='" + date + '\'' +
                 ", address='" + address + '\'' +
                 '}';
