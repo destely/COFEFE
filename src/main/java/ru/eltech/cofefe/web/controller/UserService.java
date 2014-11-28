@@ -7,37 +7,37 @@ import java.util.List;
  * Created by Юлия on 23.11.2014.
  */
 public class UserService {
-    public EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
+   // public EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
 
-    public User add(User user){
+    public User add(User user, EntityManager em){
         em.getTransaction().begin();
         User userFromDB = em.merge(user);
         em.getTransaction().commit();
         return userFromDB;
     }
-
+/*
     public void delete(long id){
         em.getTransaction().begin();
         em.remove(get(id));
     }
-
-    private User get(long id) {
+*/
+    private User get(long id,  EntityManager em) {
         return em.find(User.class, id);
     }
 
-    public void update(User user){
+    public void update(User user, EntityManager em){
         em.getTransaction().begin();
         em.merge(user);
         em.getTransaction().commit();
     }
 
-    public List<User> getAll() {
+    public List<User> getAll( EntityManager em) {
         Query query = em.createQuery("SELECT c FROM User c");
         List results = query.getResultList();
         return results;
     }
 
-    public List<User> findByLogin(Object login) {
+    public List<User> findByLogin(Object login,  EntityManager em) {
         Query query = em.createQuery("SELECT h FROM User h WHERE h.login = :login");
         query.setParameter("login", login);
         List result = query.getResultList();

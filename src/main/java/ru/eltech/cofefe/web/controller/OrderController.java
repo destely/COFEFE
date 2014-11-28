@@ -79,9 +79,9 @@ public class OrderController implements BaseController {
     }
 
     private void checkout(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-        //EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
-       request.setAttribute("content", "order.jsp");
-       HttpSession session = request.getSession();
+        EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
+        request.setAttribute("content", "order.jsp");
+        HttpSession session = request.getSession();
 
         Order order = new Order();
 
@@ -99,14 +99,24 @@ public class OrderController implements BaseController {
             session.setAttribute("cart", cart);
         }
         List<Cofefe> list = new LinkedList<>();
-        CofefeService cofefeService = new CofefeService();
+
+
         for (Cofefe cartItem : cart.values()) {
             list.add(cartItem);
-             cofefeService.add(cartItem);
-           // order.setQuantity(cartItem.get);
+            CofefeService cofefeService = new CofefeService();
+            Cofefe coff = new Cofefe();
+            coff.setId(25);
+            coff.setTitle(cartItem.getTitle());
+            coff.setImage(cartItem.getImage());
+            coff.setQuantity(cartItem.getQuantity());
+            coff.setShortDescription(cartItem.getShortDescription());
+            coff.setDescription(cartItem.getDescription());
+            cofefeService.add(coff,em);
+
         }
+
         order.setProducts(list);
-        OrderService orderService = new OrderService();
+       // OrderService orderService = new OrderService();
 
 
         List<Order> ord = new LinkedList<>();
@@ -115,11 +125,17 @@ public class OrderController implements BaseController {
 
         String login = request.getUserPrincipal().getName();
         UserService userService = new UserService();
-        List<User> user = userService.findByLogin(login);
-        User usr = user.get(0);
-        usr.setOrders(ord);
-        orderService.add(order);;//добавляет запись в таблицу заказов
-        userService.update(usr); //обновляет соответствующую запись в таблице пользователей
+        User usr = new User();
+        //List<User> user = userService.findByLogin(login,em);
+       // if(user.size()== 0) {
+            usr.setLogin(login);
+            usr.setOrders(ord);
+      //  } else {
+      //      usr = user.get(0);
+     //       usr.setOrders(ord);
+     //   }
+
+        userService.update(usr,em); //обновляет соответствующую запись в таблице пользователей
 
 
         JSONObject jsonObject = new JSONObject();

@@ -8,34 +8,35 @@ import java.util.List;
  */
 
 public class OrderService {
-    public EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
+   // public EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
 
 
 
-    public Order add(Order order){
-        EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
+    public Order add(Order order,  EntityManager em){
+       // EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
         em.getTransaction().begin();
         Order orderFromDB = em.merge(order);
         em.getTransaction().commit();
         return orderFromDB;
     }
-
+/*
     public void delete(long id){
         em.getTransaction().begin();
         em.remove(get(id));
     }
+    */
 
-    private Order get(long id) {
+    private Order get(long id, EntityManager em) {
         return em.find(Order.class, id);
     }
 
-    public void update(Order order){
+    public void update(Order order,  EntityManager em){
         em.getTransaction().begin();
         em.merge(order);
         em.getTransaction().commit();
     }
 
-    public List<Order> getAll() {
+    public List<Order> getAll( EntityManager em) {
         Query query = em.createNamedQuery("SELECT c FROM Order c");
         List results = query.getResultList();
         return results;

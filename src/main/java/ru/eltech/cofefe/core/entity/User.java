@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "cofefeusers")
 @NamedQueries({
         @NamedQuery(name = "User.getAll", query = "SELECT c from User c"),
         @NamedQuery(name = "User.findByLogin", query = "SELECT h FROM User h WHERE h.login = :login")
@@ -31,8 +31,7 @@ public class User {
     @Column(name = "password", length = 32)
     private String password;
 
-    @Column(name = "orders")
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Order> orders;
 
     public String getLogin() {

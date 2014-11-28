@@ -16,12 +16,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "products")
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Cofefe> products;
-
-   // @Column(name = "quantity")
-   // private Integer quantity;
 
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
