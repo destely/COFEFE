@@ -9,6 +9,8 @@ import main.java.ru.eltech.cofefe.core.provider.CofefeProviderStub;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,6 +79,7 @@ public class OrderController implements BaseController {
     }
 
     private void checkout(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+        //EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
        request.setAttribute("content", "order.jsp");
        HttpSession session = request.getSession();
 
@@ -96,21 +99,28 @@ public class OrderController implements BaseController {
             session.setAttribute("cart", cart);
         }
         List<Cofefe> list = new LinkedList<>();
+        CofefeService cofefeService = new CofefeService();
         for (Cofefe cartItem : cart.values()) {
             list.add(cartItem);
+             cofefeService.add(cartItem);
            // order.setQuantity(cartItem.get);
         }
+        order.setProducts(list);
         OrderService orderService = new OrderService();
 
-        orderService.add(order); //добавляет запись в таблицу заказов
+
         List<Order> ord = new LinkedList<>();
         ord.add(order);
+
 
         String login = request.getUserPrincipal().getName();
         UserService userService = new UserService();
         List<User> user = userService.findByLogin(login);
         User usr = user.get(0);
+        usr.setOrders(ord);
+        orderService.add(order);;//добавляет запись в таблицу заказов
         userService.update(usr); //обновляет соответствующую запись в таблице пользователей
+
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", true);

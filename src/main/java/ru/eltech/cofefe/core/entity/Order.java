@@ -16,7 +16,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToMany
+    @Column(name = "products")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Cofefe> products;
 
    // @Column(name = "quantity")

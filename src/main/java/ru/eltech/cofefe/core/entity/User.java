@@ -31,7 +31,8 @@ public class User {
     @Column(name = "password", length = 32)
     private String password;
 
-    @ManyToMany
+    @Column(name = "orders")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Order> orders;
 
     public String getLogin() {
