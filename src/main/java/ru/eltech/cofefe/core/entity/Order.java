@@ -1,4 +1,6 @@
 package main.java.ru.eltech.cofefe.core.entity;
+import com.sun.corba.se.spi.ior.ObjectKey;
+
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.util.*;
@@ -38,10 +40,6 @@ public class Order {
     public void setProducts(List<Cofefe> products) { this.products = products; }
 
     public List<Cofefe> getProducts(){ return products; }
-
-  //  public Integer getQuantity(){ return quantity; }
-
-  //  public void setQuantity(Integer quantity){ this.quantity = quantity; }
 
     public List<Cofefe> getOrders() { return products; }
 

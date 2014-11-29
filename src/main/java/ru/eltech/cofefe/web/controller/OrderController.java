@@ -82,12 +82,12 @@ public class OrderController implements BaseController {
         EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
         request.setAttribute("content", "order.jsp");
         HttpSession session = request.getSession();
-
+        String address = request.getParameter("address");
         Order order = new Order();
 
 
         order.setDate(new Date());
-        order.setAddress("блааааа");
+        order.setAddress(address);
 
 
         Object o = session.getAttribute("cart");
@@ -105,7 +105,7 @@ public class OrderController implements BaseController {
             list.add(cartItem);
             CofefeService cofefeService = new CofefeService();
             Cofefe coff = new Cofefe();
-            coff.setId(25);
+          //  coff.setId();
             coff.setTitle(cartItem.getTitle());
             coff.setImage(cartItem.getImage());
             coff.setQuantity(cartItem.getQuantity());
@@ -116,8 +116,6 @@ public class OrderController implements BaseController {
         }
 
         order.setProducts(list);
-       // OrderService orderService = new OrderService();
-
 
         List<Order> ord = new LinkedList<>();
         ord.add(order);
@@ -126,14 +124,8 @@ public class OrderController implements BaseController {
         String login = request.getUserPrincipal().getName();
         UserService userService = new UserService();
         User usr = new User();
-        //List<User> user = userService.findByLogin(login,em);
-       // if(user.size()== 0) {
-            usr.setLogin(login);
+             usr.setLogin(login);
             usr.setOrders(ord);
-      //  } else {
-      //      usr = user.get(0);
-     //       usr.setOrders(ord);
-     //   }
 
         userService.update(usr,em); //обновляет соответствующую запись в таблице пользователей
 

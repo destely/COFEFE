@@ -14,7 +14,12 @@
     <c:set var="jsLink"><c:url value="/js"/></c:set>
     <link rel="stylesheet" type="text/css" href="${cssLink}/main.css">
     <link rel="stylesheet" type="text/css" href="${cssLink}/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="${cssLink}/map.css">
     <script src="${jsLink}/ajax.js">void(0);</script>
+
+    <script scr="${jsLink}/mapScript.js"></script>
+
+
 </head>
 <body>
 <jsp:include page="header.jsp"/>

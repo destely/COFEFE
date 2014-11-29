@@ -281,6 +281,10 @@ textarea.form-input {
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+
+}
+.btn-long {
+    width: 400px;
 }
 
 .btn-block {

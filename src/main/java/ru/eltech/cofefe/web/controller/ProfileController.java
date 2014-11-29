@@ -1,9 +1,18 @@
 package main.java.ru.eltech.cofefe.web.controller;
 
+import main.java.ru.eltech.cofefe.core.entity.Cofefe;
+import main.java.ru.eltech.cofefe.core.entity.Order;
+import main.java.ru.eltech.cofefe.core.entity.User;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Юлия on 15.11.2014.
@@ -18,8 +27,32 @@ public class ProfileController implements BaseController {
 
     @Override
     public void handleGetRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
+
+
+        String login = request.getUserPrincipal().getName();
+        UserService userService = new UserService();
+        User usr = new User();
+        List<Order> orders = new LinkedList<>();
+        List<Cofefe> cofefe = new LinkedList<>();
+        List<User> user = userService.findByLogin(login,em);
+
+              for (User uss:user) {
+                 // orders = uss.getOrders();
+                  orders.addAll(uss.getOrders());
+
+                  for(Order ord: orders) {
+                   cofefe.addAll(ord.getProducts());
+                  }
+              }
+
+
+
         request.setAttribute("content", "profile.jsp");
         request.setAttribute("initTab", initTab);
+        request.setAttribute("cofefe", cofefe);
+        request.setAttribute("orders", orders);
         request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
     }
 

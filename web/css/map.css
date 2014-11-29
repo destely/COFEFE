@@ -1,0 +1,42 @@
+/* Внешний вид оверлея (начало) */
+.overlay {
+    position: absolute;
+    z-index: 1;
+    width: 18px;
+    height: 29px;
+    background: url(http://api.yandex.ru/images/maps/ymapsml/examples/icon_station.png);
+    cursor: pointer;
+}
+
+/* Внешний вид оверлея (конец) */
+
+/* Ссылки на оверлеи (начало) */
+#info {
+    height: 100px;
+    width: 660px;
+}
+
+#info a {
+    /*Вид ссылки на объект*/
+    text-align: center;
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    float: left;
+    color: #000;
+    background: #ffc;
+}
+
+#info a:hover {
+    /*Вид ссылки на объект при наведении*/
+    background: #000;
+    color: #ffc;
+}
+
+#info a.active {
+    /*Вид ссылки на объект, на который кликнули*/
+    background: #000;
+    color: #ffc;
+}
+
+/* Ссылки на оверлеи (начало) */
