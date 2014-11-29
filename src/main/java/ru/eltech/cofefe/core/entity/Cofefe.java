@@ -24,9 +24,6 @@ public class Cofefe {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "quantity") ////////////////!!!!!!!!!!!!!!!!!!
-    private int quantity = 0;
-
     @Column(name = "shortDescription")
     private String shortDescription;
 
@@ -34,21 +31,12 @@ public class Cofefe {
     @Type(type = "text")
     private String description;
 
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String getShortDescription() {

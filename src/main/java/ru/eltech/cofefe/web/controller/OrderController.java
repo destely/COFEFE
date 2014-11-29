@@ -1,9 +1,6 @@
 package main.java.ru.eltech.cofefe.web.controller;
 
-import main.java.ru.eltech.cofefe.core.entity.CartItem;
-import main.java.ru.eltech.cofefe.core.entity.Cofefe;
-import main.java.ru.eltech.cofefe.core.entity.Order;
-import main.java.ru.eltech.cofefe.core.entity.User;
+import main.java.ru.eltech.cofefe.core.entity.*;
 import main.java.ru.eltech.cofefe.core.provider.CofefeProvider;
 import main.java.ru.eltech.cofefe.core.provider.CofefeProviderStub;
 import org.json.simple.JSONArray;
@@ -42,36 +39,18 @@ public class OrderController implements BaseController {
     }
 
     private void list(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-//
-//       request.setAttribute("content", "order.jsp");
-//        HttpSession session = request.getSession();
-//        Object o = session.getAttribute("cart");
-//        Map<Long, CartItem> cart = null;
-//        if (o != null) {
-//            cart = (Map<Long, CartItem>) o;
-//        } else {
-//            cart = new HashMap<Long, CartItem>();
-//            session.setAttribute("cart", cart);
-//        }
-//        List<CartItem> list = new LinkedList<>();
-//        for (CartItem cartItem : cart.values()) {
-//            list.add(cartItem);
-//        }
-//        request.setAttribute("cart", list);
-//        request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
-
         request.setAttribute("content", "order.jsp");
         HttpSession session = request.getSession();
         Object o = session.getAttribute("cart");
-        Map<Long, Cofefe> cart = null;
+        Map<Long, CartItem> cart = null;
         if (o != null) {
-            cart = (Map<Long, Cofefe>) o;
+            cart = (Map<Long, CartItem>) o;
         } else {
-            cart = new HashMap<Long, Cofefe>();
+            cart = new HashMap<Long, CartItem>();
             session.setAttribute("cart", cart);
         }
-        List<Cofefe> list = new LinkedList<>();
-        for (Cofefe cartItem : cart.values()) {
+        List<CartItem> list = new LinkedList<>();
+        for (CartItem cartItem : cart.values()) {
             list.add(cartItem);
         }
         request.setAttribute("cart", list);
@@ -85,56 +64,62 @@ public class OrderController implements BaseController {
         String address = request.getParameter("address");
         Order order = new Order();
 
-
         order.setDate(new Date());
         order.setAddress(address);
 
-
         Object o = session.getAttribute("cart");
-        Map<Long, Cofefe> cart = null;
+        Map<Long, CartItem> cart = null;
         if (o != null) {
-            cart = (Map<Long, Cofefe>) o;
+            cart = (Map<Long, CartItem>) o;
         } else {
-            cart = new HashMap<Long, Cofefe>();
+            cart = new HashMap<Long, CartItem>();
             session.setAttribute("cart", cart);
         }
-        List<Cofefe> list = new LinkedList<>();
 
-
-        for (Cofefe cartItem : cart.values()) {
-            list.add(cartItem);
-            CofefeService cofefeService = new CofefeService();
-            Cofefe coff = new Cofefe();
-          //  coff.setId();
-            coff.setTitle(cartItem.getTitle());
-            coff.setImage(cartItem.getImage());
-            coff.setQuantity(cartItem.getQuantity());
-            coff.setShortDescription(cartItem.getShortDescription());
-            coff.setDescription(cartItem.getDescription());
-            cofefeService.add(coff,em);
-
+        CofefeService cofefeService = new CofefeService();
+        List<BoughtItem> boughtItems = new ArrayList<>();
+        for (CartItem cartItem : cart.values()) {
+            Cofefe cofefe = cartItem.getCofefe();
+            BoughtItem boughtItem = new BoughtItem();
+            boughtItem.setCofefe(cofefe);
+            boughtItem.setQuantity(cartItem.getQuantity());
+            boughtItems.add(boughtItem);
         }
 
-        order.setProducts(list);
+        order.setProducts(boughtItems);
 
-        List<Order> ord = new LinkedList<>();
-        ord.add(order);
-
+        OrderService orderService = new OrderService();
 
         String login = request.getUserPrincipal().getName();
         UserService userService = new UserService();
-        User usr = new User();
-             usr.setLogin(login);
-            usr.setOrders(ord);
+        User usr = userService.findByLogin(login, em).get(0);
+        List<Order> orders = usr.getOrders();
+        if (orders == null) {
+            orders = new ArrayList<>();
+        }
+        orders.add(order);
 
-        userService.update(usr,em); //обновляет соответствующую запись в таблице пользователей
+        usr.setOrders(orders);
 
+        userService.update(usr, em); //обновляет соответствующую запись в таблице пользователей
+        cart.clear();
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", true);
 
         response.getOutputStream().print(jsonObject.toJSONString());
-    }
 
+    }
+   private void clearCart(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
+      request.setAttribute("content", "cart.jsp");
+       HttpSession session = request.getSession();
+       Object o = session.getAttribute("cart");
+       Map<Long, Cofefe> cart = null;
+       if (o != null) {
+           cart = (Map<Long, Cofefe>) o;
+       }
+       cart.clear();
+       response.sendRedirect("/cofefe/app/cart");
+   }
 
 }

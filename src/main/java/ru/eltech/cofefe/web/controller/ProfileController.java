@@ -1,5 +1,6 @@
 package main.java.ru.eltech.cofefe.web.controller;
 
+import main.java.ru.eltech.cofefe.core.entity.BoughtItem;
 import main.java.ru.eltech.cofefe.core.entity.Cofefe;
 import main.java.ru.eltech.cofefe.core.entity.Order;
 import main.java.ru.eltech.cofefe.core.entity.User;
@@ -30,23 +31,17 @@ public class ProfileController implements BaseController {
 
         EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
 
-
         String login = request.getUserPrincipal().getName();
         UserService userService = new UserService();
-        User usr = new User();
         List<Order> orders = new LinkedList<>();
-        List<Cofefe> cofefe = new LinkedList<>();
-        List<User> user = userService.findByLogin(login,em);
+        List<BoughtItem> cofefe = new LinkedList<>();
+        User user = userService.findByLogin(login,em).get(0);
 
-              for (User uss:user) {
-                 // orders = uss.getOrders();
-                  orders.addAll(uss.getOrders());
+        orders.addAll(user.getOrders());
 
-                  for(Order ord: orders) {
-                   cofefe.addAll(ord.getProducts());
-                  }
-              }
-
+        for(Order ord: orders) {
+            cofefe.addAll(ord.getProducts());
+        }
 
 
         request.setAttribute("content", "profile.jsp");

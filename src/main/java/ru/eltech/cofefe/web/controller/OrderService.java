@@ -13,7 +13,7 @@ public class OrderService {
 
 
     public Order add(Order order,  EntityManager em){
-       // EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
+
         em.getTransaction().begin();
         Order orderFromDB = em.merge(order);
         em.getTransaction().commit();

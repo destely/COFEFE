@@ -27,6 +27,17 @@
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/app/*</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>LocaleFilter</filter-name>
+        <filter-class>main.java.ru.eltech.cofefe.web.filter.SetLocaleFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LocaleFilter</filter-name>
+        <url-pattern>/app/*</url-pattern>
+    </filter-mapping>
+
     <!--информация о защищаемых страницах -->
     <security-constraint>
         <web-resource-collection>

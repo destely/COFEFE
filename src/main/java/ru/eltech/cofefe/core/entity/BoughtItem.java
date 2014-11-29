@@ -1,20 +1,20 @@
 package main.java.ru.eltech.cofefe.core.entity;
 
-import javax.persistence.*;
-
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.ManyToOne;
 
 /**
- * Created by destely on 03.11.2014.
+ * Created by Юлия on 30.11.2014.
  */
-public class CartItem {
+@Embeddable
+public class BoughtItem {
 
+    @ManyToOne
     private Cofefe cofefe;
 
-    private int quantity = 0;
-
-    public CartItem(Cofefe cofefe) {
-        this.cofefe = cofefe;
-    }
+    @Column(name = "quantity")
+    private int quantity;
 
     public Cofefe getCofefe() {
         return cofefe;
@@ -31,5 +31,4 @@ public class CartItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
 }

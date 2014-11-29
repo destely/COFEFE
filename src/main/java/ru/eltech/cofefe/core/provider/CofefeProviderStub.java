@@ -1,7 +1,10 @@
 package main.java.ru.eltech.cofefe.core.provider;
 
 import main.java.ru.eltech.cofefe.core.entity.Cofefe;
+import main.java.ru.eltech.cofefe.web.controller.CofefeService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +19,8 @@ public class CofefeProviderStub implements CofefeProvider {
     private static final Object monitor = new Object();
     private static volatile CofefeProviderStub instance = null;
     private List<Cofefe> list = new ArrayList<>(20);
+
+    private CofefeService cofefeService = new CofefeService();
 
     private CofefeProviderStub() {
         Cofefe robusta = new Cofefe();
@@ -97,6 +102,16 @@ public class CofefeProviderStub implements CofefeProvider {
                 " Вдвоем они образуют мелодичную симфонию, любимую многими кофеманами.");
         blu.setImage("espr_blu_star.jpg");
         list.add(blu);
+
+        EntityManager em = Persistence.createEntityManagerFactory("COFEFE").createEntityManager();
+        for (Cofefe cofefe : list) {
+            try {
+                cofefeService.add(cofefe, em);
+            } catch (Exception e) {
+
+            }
+        }
+
     }
 
     //ленивая инициализация синглтона

@@ -25,6 +25,7 @@
         <div style="margin-left: 30%">
             <h2>Список покупок:</h2>
         </div>
+        <%--@elvariable id="item" type="main.java.ru.eltech.cofefe.core.entity.BoughtItem"--%>
         <c:if test="${empty cofefe}">Список покупок пуст.</c:if>
 
         <c:forEach var="item" items="${cofefe}">
@@ -32,18 +33,18 @@
                 <div class="row">
                     <div class="width-5">
                         <div class="image" style="">
-                            <img src="${imgLink}/${item.image}" style="width: 100%;"/>
+                            <img src="${imgLink}/${item.cofefe.image}" style="width: 100%;"/>
                         </div>
                     </div>
                     <div class="width-5">
                         <div class="row">
                             <div class="width-12">
-                                <a href="${link}${item.id}"><b>${item.title}</b></a>
+                                <a href="${link}${item.cofefe.id}"><b>${item.cofefe.title}</b></a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="width-12">
-                                    ${item.shortDescription}
+                                    ${item.cofefe.shortDescription}
                             </div>
                         </div>
                     </div>

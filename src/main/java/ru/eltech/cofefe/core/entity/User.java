@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "cofefeusers")
+@Table(name = "users")
 @NamedQueries({
         @NamedQuery(name = "User.getAll", query = "SELECT c from User c"),
         @NamedQuery(name = "User.findByLogin", query = "SELECT h FROM User h WHERE h.login = :login")
@@ -75,4 +75,5 @@ public class User {
                 ", orders='" + orders + '\'' +
                 '}';
     }
+
 }

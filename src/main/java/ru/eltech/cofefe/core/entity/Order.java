@@ -18,9 +18,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    //@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    List<Cofefe> products;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "orders_bought_items", joinColumns = @JoinColumn(name = "id"))
+    private List<BoughtItem> products;
 
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
@@ -37,13 +37,9 @@ public class Order {
         this.id = id;
     }
 
-    public void setProducts(List<Cofefe> products) { this.products = products; }
+    public void setProducts(List<BoughtItem> products) { this.products = products; }
 
-    public List<Cofefe> getProducts(){ return products; }
-
-    public List<Cofefe> getOrders() { return products; }
-
-    public void  setOrders(List<Cofefe> orders) { this.products = products; }
+    public List<BoughtItem> getProducts(){ return products; }
 
     public String getAddress() { return address; }
 
@@ -59,9 +55,9 @@ public class Order {
         return "Order{" +
                 "id='" + id + '\'' +
                 ", products='" + products + '\'' +
-              // ", quantity='" + quantity + '\'' +
                 ", date='" + date + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }
+
 }
