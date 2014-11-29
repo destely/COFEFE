@@ -108,8 +108,8 @@ public class OrderController implements BaseController {
         jsonObject.put("success", true);
 
         response.getOutputStream().print(jsonObject.toJSONString());
-
     }
+
    private void clearCart(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
       request.setAttribute("content", "cart.jsp");
        HttpSession session = request.getSession();
