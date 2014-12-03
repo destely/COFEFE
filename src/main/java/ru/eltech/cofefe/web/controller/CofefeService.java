@@ -1,8 +1,6 @@
 package main.java.ru.eltech.cofefe.web.controller;
 
 import main.java.ru.eltech.cofefe.core.entity.Cofefe;
-import main.java.ru.eltech.cofefe.core.entity.User;
-
 import javax.persistence.*;
 import java.util.List;
 

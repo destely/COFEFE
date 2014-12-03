@@ -60,4 +60,6 @@ function AjaxRequest(opts, successFunctionCallback, errorFunctionCallback) {
     };
 
     xmlhttp.send(null);
+
+
 }

@@ -109,17 +109,4 @@ public class OrderController implements BaseController {
 
         response.getOutputStream().print(jsonObject.toJSONString());
     }
-
-   private void clearCart(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
-      request.setAttribute("content", "cart.jsp");
-       HttpSession session = request.getSession();
-       Object o = session.getAttribute("cart");
-       Map<Long, Cofefe> cart = null;
-       if (o != null) {
-           cart = (Map<Long, Cofefe>) o;
-       }
-       cart.clear();
-       response.sendRedirect("/cofefe/app/cart");
-   }
-
 }

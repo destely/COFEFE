@@ -1,9 +1,7 @@
 package main.java.ru.eltech.cofefe.core.entity;
-import com.mysql.jdbc.Blob;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import javax.xml.soap.Text;
+
 
 /**
  * Created by destely on 19.10.2014.

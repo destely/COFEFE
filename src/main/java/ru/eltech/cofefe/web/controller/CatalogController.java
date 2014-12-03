@@ -54,10 +54,8 @@ public class CatalogController implements BaseController {
             array.add(_object);
         }
         response.setContentType("application/json");
-        //  response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         out.print(object.toJSONString());
         out.flush();
-    }
-
+}
 }
